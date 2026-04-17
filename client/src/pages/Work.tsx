@@ -1,151 +1,136 @@
 /*
- * Work Page — Full Showcase with Case Studies
- * Photo grid + Video reels + Project case studies with goals and achievements.
- * Design: Liquid Glass, pastel blue palette.
+ * Work Page — Brand-Focused Editorial Layout
+ * Each project organized as a complete section with narrative, visuals, and achievements.
+ * Design: Article-style storytelling with integrated media.
  */
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Instagram, Play, ExternalLink, TrendingDown, Users, Zap } from "lucide-react";
+import { Instagram, Play, ExternalLink, ArrowRight } from "lucide-react";
 import { Link } from "wouter";
 
-const photos = [
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-1-RWVdogU4TpTmnLiz5P7Kmf.webp",
-    brand: "Kokyo Coffee",
-    desc: "Latte art & cafe ambiance",
-    link: "https://www.instagram.com/kokyo.coffee/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-1-LR8oRDbZnU3UhuwUQyw4Ld.webp",
-    brand: "Krisna Beach Hotel",
-    desc: "Beachfront luxury",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-2-92m3WD4AwP3REFPcVDZc9L.webp",
-    brand: "Kokyo Coffee",
-    desc: "Menu & product showcase",
-    link: "https://www.instagram.com/kokyo.coffee/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-2-RRkVqvFSYnA355XqD6cpa4.webp",
-    brand: "Krisna Beach Hotel",
-    desc: "Tropical resort vibes",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-3-4zgtsa6Xse4zZCkFC3XH8P.webp",
-    brand: "Kokyo Coffee",
-    desc: "Brand identity & lifestyle",
-    link: "https://www.instagram.com/kokyo.coffee/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-3-4n9ww3ttwr7Cpyv9SLjViM.webp",
-    brand: "Krisna Beach Hotel",
-    desc: "Sunset pool experience",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-];
-
-const reels = [
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/reel-kokyo-1-ctFyZKvMRQfJa3dd29vkzQ.webp",
-    brand: "Kokyo Coffee",
-    title: "Latte Art Process",
-    link: "https://www.instagram.com/kokyo.coffee/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/reel-kokyo-2-WhqX2czamEW2wegBBbvfPy.webp",
-    brand: "Kokyo Coffee",
-    title: "Cafe Experience",
-    link: "https://www.instagram.com/kokyo.coffee/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/reel-krisna-1-3uKEw9ThKKq5t7x7vGsEur.webp",
-    brand: "Krisna Beach Hotel",
-    title: "Sunrise Balcony View",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/reel-krisna-2-AnNbFfUY96QG5XLKVEjsC4.webp",
-    brand: "Krisna Beach Hotel",
-    title: "Pool Party Vibes",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-  {
-    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/reel-krisna-3-S2Qyi5Bz7aPvmg8kVgBBrm.webp",
-    brand: "Krisna Beach Hotel",
-    title: "Beachfront Dinner",
-    link: "https://www.instagram.com/krisnabeachhotel/",
-  },
-];
-
-const caseStudies = [
+const projects = [
   {
     id: "pt-din",
-    company: "PT DIN",
+    brand: "PT DIN",
     role: "Digital Marketing Staff",
     period: "September 2025 - March 2026",
-    goal: "Reduce Cost Per Click (CPC) from $3 to under $1 within one month through strategic optimization",
-    approach: [
-      "Analyzed campaign performance across all ad sets using Meta Ads Manager",
-      "Implemented A/B testing on audience targeting, ad creatives, and bidding strategies",
-      "Optimized landing pages for better conversion rates to improve quality score",
-      "Refined audience segmentation to target high-intent prospects",
-      "Adjusted budget allocation to top-performing ad sets",
+    location: "Jakarta, Indonesia",
+    color: "from-blue-500/20 to-cyan-500/20",
+    narrative: `PT DIN, a dynamic Jakarta-based company, faced a critical challenge in their digital advertising strategy: their Cost Per Click (CPC) was hovering at $3, making their lead generation campaigns unsustainable and inefficient. The goal was clear—optimize campaigns to reduce CPC below $1 while maintaining lead quality.
+
+I took ownership of their Meta Ads strategy from day one. Working with their Facebook and Instagram ad accounts, I conducted a comprehensive analysis of all active campaigns using Meta Ads Manager. I identified underperforming ad sets, audience segments with high costs, and creative variations that weren't resonating.
+
+The optimization process involved multiple layers of strategy: A/B testing on audience targeting to find high-intent prospects, creative testing to improve engagement rates, and strategic bidding adjustments. I refined landing page experiences to improve conversion rates, which directly improved Quality Scores in Meta's algorithm. Budget allocation was carefully adjusted to prioritize top-performing ad sets while pausing or restructuring underperformers.
+
+Within four weeks, the results were measurable and significant. CPC dropped from $3.00 to $0.89—a 67% reduction. But the impact went beyond the metric itself: lead volume increased by 3.5x, meaning the company could generate substantially more qualified leads at a fraction of the previous cost. This transformation made their digital marketing budget work harder and smarter.`,
+    metrics: [
+      { label: "CPC Reduction", value: "67%", detail: "$3.00 → $0.89" },
+      { label: "Lead Volume Increase", value: "3.5x", detail: "While maintaining quality" },
+      { label: "Timeline", value: "4 weeks", detail: "From analysis to optimization" },
     ],
-    result: {
-      metric: "CPC Reduced by 67%",
-      achievement: "Successfully decreased Cost Per Click from $3.00 to $0.89 in 4 weeks",
-      impact: "Increased lead volume by 3.5x while maintaining quality standards",
-    },
-    tools: ["Meta Ads", "CPC Optimization", "Campaign Analysis", "A/B Testing"],
-    link: "https://www.instagram.com/pt.din/",
+    keyActivities: [
+      "Managed and ran digital ad campaigns using Meta Ads (Facebook & Instagram)",
+      "Developed campaign strategy and determined target audience segments",
+      "Performed CPC optimization through A/B testing and creative refinement",
+      "Monitored and analyzed ad performance using CPC, CTR, and conversion metrics",
+      "Optimized targeting, creative variations, and budget allocation",
+      "Managed company social media accounts and supported digital content creation",
+    ],
+    tools: ["Meta Ads Manager", "Campaign Optimization", "A/B Testing", "Audience Targeting", "Budget Management"],
+    images: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/hero-blue-JD8yEEkvYqxjJoHXcbh76q.webp",
+    ],
+    instagramLink: "https://www.instagram.com/pt.din/",
   },
   {
     id: "kokyo",
-    company: "Kokyo Coffee",
+    brand: "Kokyo Coffee",
     role: "Digital Marketing & Content Creator",
     period: "May 2025 - August 2025",
-    goal: "Build brand awareness from zero and establish community engagement through authentic storytelling",
-    approach: [
-      "Developed comprehensive content strategy focused on visual storytelling",
-      "Created consistent daily content showcasing cafe ambiance, products, and customer stories",
-      "Produced high-quality reels and carousel posts highlighting the coffee experience",
-      "Collaborated with local community for user-generated content campaigns",
-      "Ran targeted Meta Ads to drive foot traffic and online engagement",
+    location: "Pangandaran, Indonesia",
+    color: "from-amber-500/20 to-orange-500/20",
+    narrative: `Kokyo Coffee, a specialty coffee shop in Pangandaran, had a vision to become more than just a cafe—they wanted to build a community. When I joined as Digital Marketing & Content Creator, the challenge was to launch their brand into the digital space with authenticity and visual storytelling that would resonate with both locals and visitors.
+
+Starting from scratch, I developed a comprehensive digital marketing strategy focused on three pillars: awareness through consistent visual content, engagement through community interaction, and sales through targeted promotions. The strategy wasn't about aggressive selling—it was about inviting people into the Kokyo experience.
+
+I managed their social media brand accounts with meticulous content planning. Every post was intentional: showcasing the latte art process, capturing the ambiance of the cafe, highlighting the products, and telling stories of the Kokyo experience. I produced high-quality visual content including feed posts, carousel collections, and video reels that emphasized the craft and care behind every cup.
+
+Beyond organic content, I designed promotional materials—posters, banners, and digital campaign assets—that maintained visual consistency. I ran targeted Meta Ads campaigns to drive both online engagement and foot traffic to the physical location, optimizing for both awareness and conversions.
+
+The collaborative spirit was essential. I worked closely with the Kokyo team on promotional events and seasonal campaigns, ensuring that every marketing initiative aligned with the brand's values and community-first approach. The result was a thriving online presence that translated into a loyal community of customers who didn't just visit Kokyo—they became part of it.`,
+    metrics: [
+      { label: "Brand Launch", value: "Zero to Community", detail: "Established engaged following" },
+      { label: "Content Strategy", value: "Consistent Daily", detail: "Visual storytelling focus" },
+      { label: "Community Impact", value: "High", detail: "Became gathering spot" },
     ],
-    result: {
-      metric: "Community-Driven Growth",
-      achievement: "Successfully launched brand from zero to engaged community of followers",
-      impact: "Increased brand awareness, drove consistent foot traffic, and established Kokyo as a community gathering spot",
-    },
-    tools: ["Content Strategy", "Visual Storytelling", "Meta Ads", "Video Editing", "Community Management"],
-    link: "https://www.instagram.com/kokyo.coffee/",
+    keyActivities: [
+      "Developed digital marketing strategy and content planning for awareness, engagement, and sales",
+      "Managed social media brand accounts with strategic content planning and visual production",
+      "Ran and optimized Meta Ads campaigns to achieve target KPI and ROI",
+      "Designed promotional materials including posters, banners, and digital campaign content",
+      "Collaborated with team on promotional events, seasonal campaigns, and branding activities",
+      "Produced high-quality visual content including reels, carousel posts, and stories",
+    ],
+    tools: ["Content Strategy", "Visual Storytelling", "Meta Ads", "Graphic Design", "Community Management", "Video Editing"],
+    images: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-1-RWVdogU4TpTmnLiz5P7Kmf.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-3-4zgtsa6Xse4zZCkFC3XH8P.webp",
+    ],
+    instagramLink: "https://www.instagram.com/kokyo.coffee/",
   },
   {
     id: "krisna",
-    company: "Krisna Beach Hotel",
+    brand: "Krisna Beach Hotel",
     role: "Digital Marketing & Content Creator",
     period: "July 2024 - May 2025",
-    goal: "Increase hotel occupancy during peak and low seasons through seasonal campaigns and visual content",
-    approach: [
-      "Developed seasonal marketing strategies aligned with high and low season patterns",
-      "Produced premium visual content showcasing rooms, amenities, and guest experiences",
-      "Created engaging reels featuring sunset views, pool activities, and dining experiences",
-      "Executed targeted campaigns promoting special events and seasonal packages",
-      "Analyzed content performance to optimize future campaign strategies",
+    location: "Pangandaran, Indonesia",
+    color: "from-teal-500/20 to-blue-500/20",
+    narrative: `Krisna Beach Hotel, a tropical resort in Pangandaran, needed a digital presence that captured the essence of their offering: luxury, relaxation, and unforgettable experiences by the beach. My role as Digital Marketing & Content Creator was to translate that vision into compelling digital content and strategic campaigns.
+
+I started by developing a comprehensive hotel digital marketing strategy that recognized the seasonal nature of the hospitality business. High season and low season require different approaches, different messaging, and different promotional tactics. I created daily content plans that adapted to these rhythms while maintaining consistent brand identity.
+
+The visual content production was central to the strategy. I designed and produced consistent, high-quality visual content for Instagram and Facebook—feed posts that showcased rooms and amenities, reels that captured the guest experience (sunset views, pool activities, dining moments), and stories that created a sense of immediacy and exclusivity. Every piece of content was crafted to inspire bookings.
+
+Beyond digital, I created offline promotional materials—flyers, posters, banners, and backdrops—that extended the brand presence into physical spaces. These materials supported promotional events and seasonal campaigns designed to drive occupancy during both peak and slower periods.
+
+The work involved analyzing content performance and engagement metrics to understand what resonated with the audience. This data-driven approach informed ongoing content refinement and campaign optimization. I promoted hotel events through effective visual storytelling, ensuring that special occasions and seasonal packages received the attention they deserved.
+
+The result was a cohesive digital and physical presence that elevated Krisna Beach Hotel's visibility and appeal, driving consistent bookings throughout the year.`,
+    metrics: [
+      { label: "Content Production", value: "Consistent", detail: "Feed, reels, stories daily" },
+      { label: "Seasonal Campaigns", value: "High & Low Season", detail: "Optimized for occupancy" },
+      { label: "Booking Impact", value: "Improved", detail: "Year-round occupancy" },
     ],
-    result: {
-      metric: "Occupancy Rate Improvement",
-      achievement: "Increased hotel bookings through effective visual storytelling and seasonal campaigns",
-      impact: "Drove consistent occupancy during both peak and low seasons, improved booking conversion rates",
-    },
-    tools: ["Content Creation", "Visual Storytelling", "Seasonal Campaigns", "Meta Ads", "Analytics"],
-    link: "https://www.instagram.com/krisnabeachhotel/",
+    keyActivities: [
+      "Developed hotel digital marketing strategy and daily content plans",
+      "Designed and produced consistent visual content on Instagram and Facebook",
+      "Created feed posts, reels, and stories showcasing rooms, amenities, and experiences",
+      "Created offline promotional materials (flyers, posters, banners, backdrops)",
+      "Executed seasonal campaigns (high/low season) to increase hotel occupancy",
+      "Promoted hotel events through effective visual storytelling",
+      "Analyzed content performance and engagement metrics for optimization",
+    ],
+    tools: ["Content Strategy", "Visual Storytelling", "Seasonal Campaigns", "Meta Ads", "Graphic Design", "Analytics"],
+    images: [
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-1-LR8oRDbZnU3UhuwUQyw4Ld.webp",
+      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-3-4n9ww3ttwr7Cpyv9SLjViM.webp",
+    ],
+    instagramLink: "https://www.instagram.com/krisnabeachhotel/",
   },
 ];
+
+const reels = {
+  kokyo: [
+    { id: "kokyo-1", title: "Latte Art Process", brand: "Kokyo Coffee" },
+    { id: "kokyo-2", title: "Cafe Experience", brand: "Kokyo Coffee" },
+  ],
+  krisna: [
+    { id: "krisna-1", title: "Sunrise Balcony View", brand: "Krisna Beach Hotel" },
+    { id: "krisna-2", title: "Pool Party Vibes", brand: "Krisna Beach Hotel" },
+    { id: "krisna-3", title: "Beachfront Dinner", brand: "Krisna Beach Hotel" },
+  ],
+};
 
 export default function Work() {
   const { t } = useLanguage();
@@ -153,7 +138,7 @@ export default function Work() {
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
       {/* Page Header */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 border-b border-border/30">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -164,253 +149,188 @@ export default function Work() {
             <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
               {t("work.heading")}
             </h1>
-            <p className="font-body text-lg text-muted-foreground max-w-2xl leading-relaxed">
-              A curated collection of projects where I combined strategy, creativity, and data-driven optimization to deliver measurable results for brands.
+            <p className="font-body text-lg text-muted-foreground max-w-3xl leading-relaxed">
+              A collection of strategic digital marketing projects where I combined content strategy, visual storytelling, and data-driven optimization to build brands and drive measurable business results.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* ===== CASE STUDIES ===== */}
-      <section className="py-24 lg:py-32">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
-          >
-            <div className="section-label mb-3">CASE STUDIES</div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">
-              Projects with Impact
-            </h2>
-          </motion.div>
+      {/* ===== PROJECT SECTIONS ===== */}
+      {projects.map((project, projectIndex) => (
+        <section key={project.id} className="py-24 lg:py-32 border-b border-border/30 last:border-b-0">
+          <div className="container">
+            {/* Project Header */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6 }}
+              className="mb-12 lg:mb-16"
+            >
+              <div className="flex items-baseline gap-4 mb-4">
+                <h2 className="font-display text-4xl lg:text-5xl font-bold">{project.brand}</h2>
+                <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">
+                  {project.period}
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-3 text-sm text-muted-foreground">
+                <span className="font-body">{project.role}</span>
+                <span>•</span>
+                <span className="font-body">{project.location}</span>
+              </div>
+            </motion.div>
 
-          <div className="space-y-16 lg:space-y-24">
-            {caseStudies.map((study, i) => (
+            {/* Content Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
+              {/* Left: Narrative */}
               <motion.div
-                key={study.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: i * 0.1 }}
-                className="glass rounded-2xl p-8 lg:p-12"
+                transition={{ duration: 0.6 }}
+                className="lg:col-span-2"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
-                  {/* Left: Company Info */}
-                  <div className="lg:col-span-1">
-                    <div className="mb-6">
-                      <h3 className="font-display text-2xl lg:text-3xl font-bold mb-2">
-                        {study.company}
-                      </h3>
-                      <p className="font-body text-sm text-muted-foreground mb-3">
-                        {study.role}
-                      </p>
-                      <p className="font-mono text-xs text-primary/70 uppercase tracking-wider">
-                        {study.period}
-                      </p>
-                    </div>
-
-                    {/* Goal Box */}
-                    <div className="bg-primary/5 rounded-xl p-4 mb-6 border border-primary/10">
-                      <div className="font-mono text-xs text-primary uppercase tracking-wider mb-2">Goal</div>
-                      <p className="font-body text-sm font-medium leading-snug">
-                        {study.goal}
-                      </p>
-                    </div>
-
-                    {/* Tools */}
-                    <div>
-                      <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">
-                        Tools & Skills
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {study.tools.map((tool) => (
-                          <span
-                            key={tool}
-                            className="px-3 py-1 glass-subtle rounded-full font-mono text-xs font-medium"
-                          >
-                            {tool}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Middle: Approach */}
-                  <div className="lg:col-span-1">
-                    <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-4">
-                      Approach
-                    </div>
-                    <ul className="space-y-3">
-                      {study.approach.map((point, j) => (
-                        <li key={j} className="font-body text-sm text-muted-foreground flex items-start gap-3">
-                          <span className="w-1.5 h-1.5 rounded-full bg-primary/50 mt-2 shrink-0" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Right: Results */}
-                  <div className="lg:col-span-1">
-                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-6 border border-primary/20 h-full flex flex-col justify-between">
-                      <div>
-                        <div className="font-mono text-xs text-primary uppercase tracking-wider mb-3">
-                          Result
-                        </div>
-                        <div className="mb-6">
-                          <div className="font-display text-2xl lg:text-3xl font-bold text-primary mb-2">
-                            {study.result.metric}
-                          </div>
-                          <p className="font-body text-sm font-medium mb-4">
-                            {study.result.achievement}
-                          </p>
-                          <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                            <strong>Impact:</strong> {study.result.impact}
-                          </p>
-                        </div>
-                      </div>
-
-                      <a
-                        href={study.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-300 font-body text-sm font-medium"
-                      >
-                        View on Instagram
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    </div>
-                  </div>
+                <div className="prose prose-sm dark:prose-invert max-w-none">
+                  {project.narrative.split("\n\n").map((paragraph, i) => (
+                    <p key={i} className="font-body text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0">
+                      {paragraph}
+                    </p>
+                  ))}
                 </div>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ===== PHOTO GRID ===== */}
-      <section className="py-24 lg:py-32 bg-secondary/30">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          >
-            <div className="section-label mb-3">VISUAL CONTENT</div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
-              Photo Storytelling
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-            {photos.map((photo, i) => (
-              <motion.a
-                key={i}
-                href={photo.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-xl"
+              {/* Right: Key Info & Metrics */}
+              <motion.div
+                initial={{ opacity: 0, x: 40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="lg:col-span-1"
               >
-                <div className="aspect-[4/5]">
-                  <img
-                    src={photo.src}
-                    alt={photo.desc}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+                {/* Metrics */}
+                <div className={`bg-gradient-to-br ${project.color} rounded-xl p-6 mb-6 border border-border/30`}>
+                  <div className="font-mono text-xs text-primary uppercase tracking-wider mb-4">Key Metrics</div>
+                  <div className="space-y-4">
+                    {project.metrics.map((metric, i) => (
+                      <div key={i} className="pb-4 border-b border-border/20 last:pb-0 last:border-b-0">
+                        <div className="font-display text-2xl font-bold mb-1">{metric.value}</div>
+                        <div className="font-body text-xs font-medium mb-1">{metric.label}</div>
+                        <div className="font-body text-xs text-muted-foreground">{metric.detail}</div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-4 sm:p-5">
-                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="flex items-center gap-2 mb-2">
-                      <Instagram className="w-3.5 h-3.5 text-white/80" />
-                      <span className="font-mono text-[11px] text-white/80 uppercase tracking-wider">
-                        {photo.brand}
+                {/* Tools */}
+                <div className="mb-6">
+                  <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">Tools & Skills</div>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tools.map((tool) => (
+                      <span
+                        key={tool}
+                        className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
+                      >
+                        {tool}
                       </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Instagram Link */}
+                <a
+                  href={project.instagramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-300 font-body text-sm font-medium"
+                >
+                  View on Instagram
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Key Activities */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12"
+            >
+              <h3 className="font-display text-xl font-bold mb-6">Key Activities & Responsibilities</h3>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {project.keyActivities.map((activity, i) => (
+                  <li key={i} className="font-body text-sm text-muted-foreground flex items-start gap-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2 shrink-0" />
+                    <span>{activity}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Visual Gallery */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              <h3 className="font-display text-xl font-bold mb-6">Visual Work</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                {project.images.map((image, i) => (
+                  <div key={i} className="group relative overflow-hidden rounded-xl">
+                    <div className="aspect-[4/3]">
+                      <img
+                        src={image}
+                        alt={`${project.brand} visual content`}
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
                     </div>
-                    <p className="font-body text-sm text-white/90">{photo.desc}</p>
-                    <div className="flex items-center gap-1 mt-2 text-white/60">
-                      <ExternalLink className="w-3 h-3" />
-                      <span className="font-mono text-[10px]">View on Instagram</span>
-                    </div>
+                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
+                  </div>
+                ))}
+              </div>
+
+              {/* Video Reels */}
+              {(project.id === "kokyo" || project.id === "krisna") && (
+                <div>
+                  <h4 className="font-body text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Video Reels</h4>
+                  <div className={`grid gap-4 ${project.id === "kokyo" ? "grid-cols-2" : "grid-cols-3"}`}>
+                    {(project.id === "kokyo" ? reels.kokyo : reels.krisna).map((reel) => (
+                      <motion.button
+                        key={reel.id}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="group relative overflow-hidden rounded-lg bg-secondary/50 aspect-[9/16] flex items-center justify-center cursor-pointer transition-all duration-300 hover:ring-2 hover:ring-primary/50"
+                        onClick={() => {
+                          // Placeholder for video link - to be added later
+                          console.log(`Video clicked: ${reel.id}`);
+                        }}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/60 flex items-center justify-center">
+                          <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
+                            <Play className="w-6 h-6 text-white fill-white ml-0.5" />
+                          </div>
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                          <p className="font-display text-xs sm:text-sm font-semibold text-white leading-tight">
+                            {reel.title}
+                          </p>
+                          <p className="font-mono text-[10px] text-white/60 mt-1">{reel.brand}</p>
+                        </div>
+                      </motion.button>
+                    ))}
                   </div>
                 </div>
-              </motion.a>
-            ))}
+              )}
+            </motion.div>
           </div>
-        </div>
-      </section>
-
-      {/* ===== VIDEO REELS ===== */}
-      <section className="py-24 lg:py-32">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
-          >
-            <div className="section-label mb-3">VIDEO CONTENT</div>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold tracking-tight">
-              Reels & Motion
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
-            {reels.map((reel, i) => (
-              <motion.a
-                key={i}
-                href={reel.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-60px" }}
-                transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="group relative overflow-hidden rounded-xl"
-              >
-                <div className="aspect-[9/16]">
-                  <img
-                    src={reel.src}
-                    alt={reel.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                </div>
-
-                {/* Play Button Overlay */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300">
-                    <Play className="w-5 h-5 text-white fill-white ml-0.5" />
-                  </div>
-                </div>
-
-                {/* Bottom Info */}
-                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-4">
-                  <div className="font-mono text-[10px] text-white/60 uppercase tracking-wider mb-0.5">
-                    {reel.brand}
-                  </div>
-                  <p className="font-display text-xs sm:text-sm font-semibold text-white leading-tight">
-                    {reel.title}
-                  </p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       {/* ===== CTA ===== */}
-      <section className="py-16 lg:py-24">
+      <section className="py-16 lg:py-24 bg-secondary/30">
         <div className="container text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -418,14 +338,18 @@ export default function Work() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="font-body text-lg text-muted-foreground mb-6">
-              Interested in collaborating on your next project?
+            <h2 className="font-display text-2xl lg:text-3xl font-bold mb-4">
+              Ready to collaborate?
+            </h2>
+            <p className="font-body text-muted-foreground mb-8 max-w-2xl mx-auto">
+              I'm available for full-time, freelance, and project-based opportunities. Let's discuss how I can help your brand grow.
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group"
             >
-              Let's Talk
+              Get in Touch
+              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
