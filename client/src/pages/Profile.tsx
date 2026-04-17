@@ -11,7 +11,7 @@ import {
   GraduationCap, Briefcase
 } from "lucide-react";
 
-const ABOUT_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/about-portrait_acf2b6e4.png";
+const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776412196/Pas_Foto2_ttb6wu.png";
 
 const skills = [
   { icon: Megaphone, name: "Meta Ads", desc: "Campaign strategy & optimization" },
