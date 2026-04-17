@@ -1,207 +1,235 @@
 /*
- * Design: Liquid Editorial — Navbar
- * Sticky top nav with frosted glass effect, logo left, nav links + toggles right.
- * Font: Space Grotesk for brand, DM Sans for links, JetBrains Mono for toggles.
- * Colors: cream bg with charcoal text, coral accents.
+ * Design: Liquid Glass — Premium Multi-page Navbar
+ * Sticky glass morphism nav with smooth page transitions.
+ * Font: Space Grotesk for nav links.
+ * Colors: pastel blue accent, glass background.
  */
 
-import { useTheme } from "@/contexts/ThemeContext";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Moon, Sun, Globe } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useTheme } from "@/contexts/ThemeContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { Globe, Moon, Sun, Menu, X } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "wouter";
 
 export default function Navbar() {
-  const { theme, toggleTheme } = useTheme();
-  const handleToggleTheme = () => toggleTheme?.();
   const { lang, toggleLang, t } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [location] = useLocation();
+
+  const handleToggleTheme = () => toggleTheme?.();
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { href: "#work", label: t("nav.work") },
-    { href: "#about", label: t("nav.about") },
-    { href: "#skills", label: t("nav.skills") },
-    { href: "#experience", label: t("nav.experience") },
-    { href: "#contact", label: t("nav.contact") },
-  ];
-
-  const handleNavClick = (href: string) => {
+  useEffect(() => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  }, [location]);
+
+  const navLinks = [
+    { href: "/", label: t("nav.home") },
+    { href: "/profile", label: t("nav.profile") },
+    { href: "/work", label: t("nav.work") },
+    { href: "/contact", label: t("nav.contact") },
+  ];
 
   return (
     <>
-      <nav
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
-            : "bg-transparent"
+            ? "glass py-3"
+            : "bg-transparent py-5"
         }`}
       >
-        <div className="container flex items-center justify-between h-16 lg:h-20">
+        <div className="container flex items-center justify-between">
           {/* Logo */}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className="font-display font-bold text-lg tracking-tight hover:text-primary transition-colors"
+          <Link
+            href="/"
+            className="font-display font-bold text-xl tracking-tight hover:opacity-70 transition-opacity duration-300"
           >
             dimas<span className="text-primary">.</span>
-          </a>
+          </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.href}
                 href={link.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(link.href);
-                }}
-                className="font-body text-sm text-muted-foreground hover:text-foreground transition-colors relative group"
+                className="relative px-4 py-2 font-display text-sm font-medium transition-colors duration-300 group"
               >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
-              </a>
-            ))}
-
-            <div className="flex items-center gap-2 ml-4 pl-4 border-l border-border">
-              {/* Language Toggle */}
-              <button
-                onClick={toggleLang}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-secondary hover:bg-secondary/80 transition-all"
-                aria-label="Toggle language"
-              >
-                <Globe className="w-3.5 h-3.5" />
-                <AnimatePresence mode="wait">
-                  <motion.span
-                    key={lang}
-                    initial={{ y: 8, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    exit={{ y: -8, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {lang.toUpperCase()}
-                  </motion.span>
-                </AnimatePresence>
-              </button>
-
-              {/* Theme Toggle */}
-              <button
-                onClick={handleToggleTheme}
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono font-medium bg-secondary hover:bg-secondary/80 transition-all"
-                aria-label="Toggle theme"
-              >
-                <AnimatePresence mode="wait">
-                  {theme === "dark" ? (
-                    <motion.div
-                      key="sun"
-                      initial={{ rotate: -90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: 90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Sun className="w-3.5 h-3.5" />
-                    </motion.div>
-                  ) : (
-                    <motion.div
-                      key="moon"
-                      initial={{ rotate: 90, opacity: 0 }}
-                      animate={{ rotate: 0, opacity: 1 }}
-                      exit={{ rotate: -90, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Moon className="w-3.5 h-3.5" />
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-                <span className="hidden sm:inline">
-                  {theme === "dark" ? "Light" : "Dark"}
+                <span className={`relative z-10 ${
+                  location === link.href
+                    ? "text-primary"
+                    : "text-foreground/70 group-hover:text-foreground"
+                }`}>
+                  {link.label}
                 </span>
-              </button>
-            </div>
+                {location === link.href && (
+                  <motion.div
+                    layoutId="nav-indicator"
+                    className="absolute inset-0 rounded-full bg-primary/10"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
+                )}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Controls */}
+          <div className="hidden md:flex items-center gap-2">
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLang}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-subtle text-xs font-mono font-medium hover:scale-105 transition-all duration-300"
+              aria-label="Toggle language"
+            >
+              <Globe className="w-3.5 h-3.5" />
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={lang}
+                  initial={{ y: -8, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: 8, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {lang.toUpperCase()}
+                </motion.span>
+              </AnimatePresence>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={handleToggleTheme}
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full glass-subtle text-xs font-mono font-medium hover:scale-105 transition-all duration-300"
+              aria-label="Toggle theme"
+            >
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={theme}
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="flex items-center gap-1.5"
+                >
+                  {theme === "dark" ? (
+                    <>
+                      <Sun className="w-3.5 h-3.5" />
+                      <span>Light</span>
+                    </>
+                  ) : (
+                    <>
+                      <Moon className="w-3.5 h-3.5" />
+                      <span>Dark</span>
+                    </>
+                  )}
+                </motion.span>
+              </AnimatePresence>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden flex flex-col gap-1.5 p-2"
+            className="md:hidden relative w-10 h-10 flex items-center justify-center"
             aria-label="Toggle menu"
           >
-            <motion.span
-              animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-foreground origin-center"
-            />
-            <motion.span
-              animate={mobileOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="block w-6 h-0.5 bg-foreground"
-            />
-            <motion.span
-              animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
-              className="block w-6 h-0.5 bg-foreground origin-center"
-            />
+            <AnimatePresence mode="wait">
+              {mobileOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ rotate: -90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: 90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X className="w-5 h-5" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ rotate: 90, opacity: 0 }}
+                  animate={{ rotate: 0, opacity: 1 }}
+                  exit={{ rotate: -90, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu className="w-5 h-5" />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </button>
         </div>
-      </nav>
+      </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl pt-20 lg:hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 bg-background/95 backdrop-blur-xl md:hidden"
           >
-            <div className="container flex flex-col gap-6 py-8">
+            <div className="flex flex-col items-center justify-center h-full gap-8">
               {navLinks.map((link, i) => (
-                <motion.a
+                <motion.div
                   key={link.href}
-                  href={link.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick(link.href);
-                  }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
-                  className="font-display text-3xl font-bold hover:text-primary transition-colors"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.3, delay: i * 0.08 }}
                 >
-                  {link.label}
-                </motion.a>
+                  <Link
+                    href={link.href}
+                    className={`font-display text-3xl font-bold transition-colors duration-300 ${
+                      location === link.href
+                        ? "text-primary"
+                        : "text-foreground/60 hover:text-foreground"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
               ))}
 
-              <div className="flex gap-3 mt-4 pt-4 border-t border-border">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 20 }}
+                transition={{ duration: 0.3, delay: 0.35 }}
+                className="flex items-center gap-3 mt-4"
+              >
                 <button
                   onClick={toggleLang}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono bg-secondary"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full glass-subtle text-sm font-mono font-medium"
+                  aria-label="Toggle language"
                 >
                   <Globe className="w-4 h-4" />
                   {lang.toUpperCase()}
                 </button>
                 <button
                   onClick={handleToggleTheme}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-mono bg-secondary"
+                  className="flex items-center gap-1.5 px-4 py-2 rounded-full glass-subtle text-sm font-mono font-medium"
+                  aria-label="Toggle theme"
                 >
-                  {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-                  {theme === "dark" ? "Light" : "Dark"}
+                  {theme === "dark" ? (
+                    <><Sun className="w-4 h-4" /><span>Light</span></>
+                  ) : (
+                    <><Moon className="w-4 h-4" /><span>Dark</span></>
+                  )}
                 </button>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         )}
