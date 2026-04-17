@@ -41,7 +41,6 @@ Within four weeks, the results were measurable and significant. CPC dropped from
     images: [
       "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/hero-blue-JD8yEEkvYqxjJoHXcbh76q.webp",
     ],
-    instagramLink: "https://www.instagram.com/pt.din/",
   },
   {
     id: "kokyo",
@@ -74,10 +73,10 @@ The collaborative spirit was essential. I worked closely with the Kokyo team on 
     ],
     tools: ["Content Strategy", "Visual Storytelling", "Meta Ads", "Graphic Design", "Community Management", "Video Editing"],
     images: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-1-RWVdogU4TpTmnLiz5P7Kmf.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/kokyo-3-4zgtsa6Xse4zZCkFC3XH8P.webp",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-4_shcnqa.png",
     ],
-    instagramLink: "https://www.instagram.com/kokyo.coffee/",
+    instagramLink: "https://www.instagram.com/kokyo.co/",
   },
   {
     id: "krisna",
@@ -113,8 +112,8 @@ The result was a cohesive digital and physical presence that elevated Krisna Bea
     ],
     tools: ["Content Strategy", "Visual Storytelling", "Seasonal Campaigns", "Meta Ads", "Graphic Design", "Analytics"],
     images: [
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-1-LR8oRDbZnU3UhuwUQyw4Ld.webp",
-      "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/krisna-3-4n9ww3ttwr7Cpyv9SLjViM.webp",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419662/project-krisna-5_nmz8ak.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
   },
