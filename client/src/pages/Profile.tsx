@@ -23,9 +23,9 @@ const skills = [
 ];
 
 const tools = [
-  "Adobe Premiere Pro", "Adobe Photoshop", "Adobe Illustrator",
+  "Adobe Photoshop", "Adobe Illustrator", "Adobe Lightroom", "Microsoft Office",
   "Canva", "CapCut", "Meta Business Suite",
-  "Google Analytics", "Google Ads", "Figma",
+  "Google Analytics", "Google Ads", "Google Workspace", "TikTok Ads", "AI Tools"
 ];
 
 const experiences = [

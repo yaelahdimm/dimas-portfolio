@@ -20,8 +20,8 @@ const contactMethods = [
   {
     icon: Phone,
     labelKey: "contact.whatsapp",
-    value: "+62 812-3456-7890",
-    href: "https://wa.me/6281234567890",
+    value: "+62 838 2717 6778",
+    href: "https://wa.me/6283827176778",
   },
   {
     icon: Linkedin,
@@ -126,7 +126,7 @@ export default function Contact() {
                     {t("contact.cta")}
                   </a>
                   <a
-                    href="https://wa.me/6281234567890"
+                    href="https://wa.me/6283827176778"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 px-7 py-3.5 border-2 border-foreground/15 font-display font-semibold text-sm rounded-full hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300"

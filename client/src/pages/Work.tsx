@@ -6,8 +6,9 @@
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { Instagram, Play, ExternalLink, ArrowRight } from "lucide-react";
+import { Play, ExternalLink, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 const projects = [
   {
@@ -75,8 +76,16 @@ The collaborative spirit was essential. I worked closely with the Kokyo team on 
     images: [
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-4_shcnqa.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-2_abc123.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-3_def456.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-5_ghi789.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-6_jkl012.png",
     ],
     instagramLink: "https://www.instagram.com/kokyo.co/",
+    videos: [
+      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-1.jpg" },
+      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-2.jpg" },
+    ],
   },
   {
     id: "krisna",
@@ -114,22 +123,110 @@ The result was a cohesive digital and physical presence that elevated Krisna Bea
     images: [
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419662/project-krisna-5_nmz8ak.jpg",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-2_abc123.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-3_def456.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-4_ghi789.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-6_jkl012.jpg",
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
+    videos: [
+      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-1.jpg" },
+      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-2.jpg" },
+      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-3.jpg" },
+    ],
   },
 ];
 
-const reels = {
-  kokyo: [
-    { id: "kokyo-1", title: "Latte Art Process", brand: "Kokyo Coffee" },
-    { id: "kokyo-2", title: "Cafe Experience", brand: "Kokyo Coffee" },
-  ],
-  krisna: [
-    { id: "krisna-1", title: "Sunrise Balcony View", brand: "Krisna Beach Hotel" },
-    { id: "krisna-2", title: "Pool Party Vibes", brand: "Krisna Beach Hotel" },
-    { id: "krisna-3", title: "Beachfront Dinner", brand: "Krisna Beach Hotel" },
-  ],
-};
+interface SliderProps {
+  images: string[];
+  videos?: { id: string; title: string; thumbnail: string }[];
+  instagramLink: string;
+}
+
+function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const allSlides = [...images, ...videos.map(v => v.thumbnail)];
+  const totalSlides = allSlides.length;
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [totalSlides]);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+  };
+
+  const isVideo = (index: number) => index >= images.length;
+
+  return (
+    <div className="relative w-full max-w-[360px] mx-auto lg:mx-0 lg:ml-6">
+      <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-secondary/50">
+        <div
+          className="flex h-full transition-transform duration-500 ease-out"
+          style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+        >
+          {allSlides.map((slide, index) => (
+            <div key={index} className="w-full h-full flex-shrink-0 relative">
+              <img
+                src={slide}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
+              {isVideo(index) && (
+                <a
+                  href={instagramLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors"
+                >
+                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300">
+                    <Play className="w-7 h-7 text-white fill-white ml-1" />
+                  </div>
+                </a>
+              )}
+            </div>
+          ))}
+        </div>
+
+        <button
+          onClick={goToPrevious}
+          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
+          aria-label="Previous slide"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+
+        <button
+          onClick={goToNext}
+          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
+          aria-label="Next slide"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="flex justify-center gap-2 mt-4">
+        {allSlides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50"
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export default function Work() {
   const { t } = useLanguage();
@@ -156,7 +253,7 @@ export default function Work() {
       </section>
 
       {/* ===== PROJECT SECTIONS ===== */}
-      {projects.map((project, projectIndex) => (
+      {projects.map((project) => (
         <section key={project.id} className="py-24 lg:py-32 border-b border-border/30 last:border-b-0">
           <div className="container">
             {/* Project Header */}
@@ -180,81 +277,175 @@ export default function Work() {
               </div>
             </motion.div>
 
-            {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
-              {/* Left: Narrative */}
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6 }}
-                className="lg:col-span-2"
-              >
-                <div className="prose prose-sm dark:prose-invert max-w-none">
-                  {project.narrative.split("\n\n").map((paragraph, i) => (
-                    <p key={i} className="font-body text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0">
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </motion.div>
+            {(project.id === "kokyo" || project.id === "krisna") && (
+              <>
+                {/* ROW 1: Slider + Intro */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start mb-12">
+                  {/* Left: Slider */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6 }}
+                    className="w-full flex justify-center lg:justify-start lg:pl-4"
+                  >
+                    <ImageSlider
+                      images={project.images}
+                      videos={project.videos}
+                      instagramLink={project.instagramLink || ""}
+                    />
+                  </motion.div>
 
-              {/* Right: Key Info & Metrics */}
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="lg:col-span-1"
-              >
-                {/* Metrics */}
-                <div className={`bg-gradient-to-br ${project.color} rounded-xl p-6 mb-6 border border-border/30`}>
-                  <div className="font-mono text-xs text-primary uppercase tracking-wider mb-4">Key Metrics</div>
-                  <div className="space-y-4">
-                    {project.metrics.map((metric, i) => (
-                      <div key={i} className="pb-4 border-b border-border/20 last:pb-0 last:border-b-0">
-                        <div className="font-display text-2xl font-bold mb-1">{metric.value}</div>
-                        <div className="font-body text-xs font-medium mb-1">{metric.label}</div>
-                        <div className="font-body text-xs text-muted-foreground">{metric.detail}</div>
+                  {/* Right: Intro */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="w-full max-w-[620px]"
+                  >
+                    <div className="prose prose-sm dark:prose-invert">
+                      {project.narrative.split("\n\n").slice(0, 2).map((paragraph, i) => (
+                        <p key={i} className="font-body text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* ROW 2: Metrics + Main Story */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-10">
+                  {/* Left: Metrics */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-col w-full max-w-[480px]"
+                  >
+                    <div className={`bg-gradient-to-br ${project.color} rounded-xl p-6 mb-6 border border-border/30`}>
+                      <div className="font-mono text-xs text-primary uppercase tracking-wider mb-4">Key Metrics</div>
+                      <div className="space-y-4">
+                        {project.metrics.map((metric, i) => (
+                          <div key={i} className="pb-4 border-b border-border/20 last:pb-0 last:border-b-0">
+                            <div className="font-display text-2xl font-bold mb-1">{metric.value}</div>
+                            <div className="font-body text-xs font-medium mb-1">{metric.label}</div>
+                            <div className="font-body text-xs text-muted-foreground">{metric.detail}</div>
+                          </div>
+                        ))}
                       </div>
-                    ))}
-                  </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">Tools & Skills</div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <a
+                      href={project.instagramLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-300 font-body text-sm font-medium"
+                    >
+                      View on Instagram
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </a>
+                  </motion.div>
+
+                  {/* Right: Main Story */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="w-full max-w-[620px]"
+                  >
+                    <div className="prose prose-sm dark:prose-invert">
+                      {project.narrative.split("\n\n").slice(2).map((paragraph, i) => (
+                        <p key={i} className="font-body text-base text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
                 </div>
+              </>
+            )}
 
-                {/* Tools */}
-                <div className="mb-6">
-                  <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">Tools & Skills</div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tools.map((tool) => (
-                      <span
-                        key={tool}
-                        className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
-                      >
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
+            {project.id === "pt-din" && (
+              <>
+                {/* PT DIN: Text-focused case study */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 items-start mb-12">
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6 }}
+                    className="lg:col-span-2"
+                  >
+                    <div className="prose prose-sm dark:prose-invert max-w-none">
+                      {project.narrative.split("\n\n").map((paragraph, i) => (
+                        <p key={i} className="font-body text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-80px" }}
+                    transition={{ duration: 0.6, delay: 0.1 }}
+                    className="lg:col-span-1"
+                  >
+                    <div className={`bg-gradient-to-br ${project.color} rounded-xl p-6 mb-6 border border-border/30`}>
+                      <div className="font-mono text-xs text-primary uppercase tracking-wider mb-4">Key Metrics</div>
+                      <div className="space-y-4">
+                        {project.metrics.map((metric, i) => (
+                          <div key={i} className="pb-4 border-b border-border/20 last:pb-0 last:border-b-0">
+                            <div className="font-display text-2xl font-bold mb-1">{metric.value}</div>
+                            <div className="font-body text-xs font-medium mb-1">{metric.label}</div>
+                            <div className="font-body text-xs text-muted-foreground">{metric.detail}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-6">
+                      <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">Tools & Skills</div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tools.map((tool) => (
+                          <span
+                            key={tool}
+                            className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
                 </div>
+              </>
+            )}
 
-                {/* Instagram Link */}
-                <a
-                  href={project.instagramLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors duration-300 font-body text-sm font-medium"
-                >
-                  View on Instagram
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              </motion.div>
-            </div>
-
-            {/* Key Activities */}
+            {/* ROW 3: Key Activities */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-12"
             >
               <h3 className="font-display text-xl font-bold mb-6">Key Activities & Responsibilities</h3>
@@ -266,63 +457,6 @@ export default function Work() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
-
-            {/* Visual Gallery */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              <h3 className="font-display text-xl font-bold mb-6">Visual Work</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                {project.images.map((image, i) => (
-                  <div key={i} className="group relative overflow-hidden rounded-xl">
-                    <div className="aspect-[4/3]">
-                      <img
-                        src={image}
-                        alt={`${project.brand} visual content`}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-500" />
-                  </div>
-                ))}
-              </div>
-
-              {/* Video Reels */}
-              {(project.id === "kokyo" || project.id === "krisna") && (
-                <div>
-                  <h4 className="font-body text-sm font-medium text-muted-foreground uppercase tracking-wider mb-4">Video Reels</h4>
-                  <div className={`grid gap-4 ${project.id === "kokyo" ? "grid-cols-2" : "grid-cols-3"}`}>
-                    {(project.id === "kokyo" ? reels.kokyo : reels.krisna).map((reel) => (
-                      <motion.button
-                        key={reel.id}
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="group relative overflow-hidden rounded-lg bg-secondary/50 aspect-[9/16] flex items-center justify-center cursor-pointer transition-all duration-300 hover:ring-2 hover:ring-primary/50"
-                        onClick={() => {
-                          // Placeholder for video link - to be added later
-                          console.log(`Video clicked: ${reel.id}`);
-                        }}
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-black/30 to-black/60 flex items-center justify-center">
-                          <div className="w-14 h-14 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 group-hover:bg-white/30 group-hover:scale-110 transition-all duration-300">
-                            <Play className="w-6 h-6 text-white fill-white ml-0.5" />
-                          </div>
-                        </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4">
-                          <p className="font-display text-xs sm:text-sm font-semibold text-white leading-tight">
-                            {reel.title}
-                          </p>
-                          <p className="font-mono text-[10px] text-white/60 mt-1">{reel.brand}</p>
-                        </div>
-                      </motion.button>
-                    ))}
-                  </div>
-                </div>
-              )}
             </motion.div>
           </div>
         </section>
