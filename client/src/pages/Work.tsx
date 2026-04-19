@@ -60,12 +60,12 @@ const projects = [
     ],
     tools: ["Content Strategy", "Visual Storytelling", "Meta Ads", "Graphic Design", "Community Management", "Video Editing"],
     images: [
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-3_q0olhx.png",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-6_xzqcg5.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-2_dxq7mp.png",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-4_shcnqa.png",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-2_abc123.png",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-3_def456.png",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-5_ghi789.png",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-6_jkl012.png",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419544/project-kokyo-5_mjx7ww.jpg",
     ],
     instagramLink: "https://www.instagram.com/kokyo.co/",
     videos: [
@@ -97,12 +97,12 @@ const projects = [
     ],
     tools: ["Content Strategy", "Visual Storytelling", "Seasonal Campaigns", "Meta Ads", "Graphic Design", "Analytics"],
     images: [
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419662/project-krisna-6_cf7bvk.jpg",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419662/project-krisna-5_nmz8ak.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419661/project-krisna-4_dbwqhh.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419661/project-krisna-3_edwtbr.jpg",
+      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419661/project-krisna-2_qd228m.jpg",
       "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-2_abc123.jpg",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-3_def456.jpg",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-4_ghi789.jpg",
-      "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-6_jkl012.jpg",
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
     videos: [
