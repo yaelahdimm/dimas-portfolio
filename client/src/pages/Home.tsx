@@ -21,7 +21,7 @@ const projects = [
     dateKey: "project.1.date",
     titleKey: "project.1.title",
     tagsKey: "project.1.tags",
-    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776601143/project-ads-SZDukkMZeqeqYj3ABe6DPm_gusj64.webp",
     metrics: [
       { value: "67%", label: "CPC Reduction", detail: "$3.00 → $0.89" },
       { value: "3.5x", label: "Lead Volume", detail: "Increase" },
@@ -34,7 +34,7 @@ const projects = [
     dateKey: "project.2.date",
     titleKey: "project.2.title",
     tagsKey: "project.2.tags",
-    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-2_abc123.png",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
     metrics: [
       { value: "Zero to Community", label: "Brand Launch", detail: "Engaged following" },
       { value: "Daily", label: "Content", detail: "Visual storytelling" },
