@@ -12,7 +12,7 @@ import { useState, useEffect } from "react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/hero-blue-JD8yEEkvYqxjJoHXcbh76q.webp";
 const CV_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/DimasStyaNugraha_2ae7d949.pdf";
-const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776412196/Pas_Foto2_ttb6wu.png";
+const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776602743/IMG_3640.JPG_qv1btn.jpg";
 
 const projects = [
   {
@@ -34,7 +34,7 @@ const projects = [
     dateKey: "project.2.date",
     titleKey: "project.2.title",
     tagsKey: "project.2.tags",
-    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776601177/1_d0nuql.png",
     metrics: [
       { value: "Zero to Community", label: "Brand Launch", detail: "Engaged following" },
       { value: "Daily", label: "Content", detail: "Visual storytelling" },
@@ -47,7 +47,7 @@ const projects = [
     dateKey: "project.3.date",
     titleKey: "project.3.title",
     tagsKey: "project.3.tags",
-    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776601179/2_zsi9t7.png",
     metrics: [
       { value: "Consistent", label: "Content Production", detail: "Daily posts" },
       { value: "High & Low", label: "Seasonal Campaigns", detail: "Optimized occupancy" },
