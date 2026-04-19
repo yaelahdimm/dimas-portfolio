@@ -27,7 +27,7 @@ const contactMethods = [
     icon: Linkedin,
     labelKey: "contact.linkedin",
     value: "Dimas Stya Nugraha",
-    href: "https://www.linkedin.com/in/dimas-stya-nugraha/",
+    href: "https://www.linkedin.com/in/styanugrahadimas/",
   },
 ];
 
