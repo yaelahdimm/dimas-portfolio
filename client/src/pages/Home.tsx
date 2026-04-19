@@ -1,36 +1,58 @@
 /*
  * Home Page — Branding + Teaser
- * Hero with kinetic name, marquee ticker, selected work grid, about teaser.
+ * Hero with kinetic name, marquee ticker, horizontal project slider, about teaser.
  * Design: Liquid Glass, pastel blue palette.
  */
 
 import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
-import { ArrowDown, Download, Briefcase, ArrowRight } from "lucide-react";
+import { ArrowDown, Download, Briefcase, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "wouter";
+import { useState, useEffect } from "react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/hero-blue-JD8yEEkvYqxjJoHXcbh76q.webp";
 const CV_URL = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/DimasStyaNugraha_2ae7d949.pdf";
 const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776412196/Pas_Foto2_ttb6wu.png";
 
-const selectedProjects = [
+const projects = [
   {
-    img: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
-    companyKey: "project.2.company",
-    titleKey: "project.2.title",
-    tagsKey: "project.2.tags",
-  },
-  {
-    img: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419662/project-krisna-5_nmz8ak.jpg",
-    companyKey: "project.3.company",
-    titleKey: "project.3.title",
-    tagsKey: "project.3.tags",
-  },
-  {
-    img: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+    id: "pt-din",
     companyKey: "project.1.company",
+    dateKey: "project.1.date",
     titleKey: "project.1.title",
     tagsKey: "project.1.tags",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419547/project-kokyo-1_bj4f2t.png",
+    metrics: [
+      { value: "67%", label: "CPC Reduction", detail: "$3.00 → $0.89" },
+      { value: "3.5x", label: "Lead Volume", detail: "Increase" },
+    ],
+    tools: ["Meta Ads Manager", "Campaign Optimization", "A/B Testing", "Audience Targeting", "Budget Management"],
+  },
+  {
+    id: "kokyo",
+    companyKey: "project.2.company",
+    dateKey: "project.2.date",
+    titleKey: "project.2.title",
+    tagsKey: "project.2.tags",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/project-kokyo-2_abc123.png",
+    metrics: [
+      { value: "Zero to Community", label: "Brand Launch", detail: "Engaged following" },
+      { value: "Daily", label: "Content", detail: "Visual storytelling" },
+    ],
+    tools: ["Content Strategy", "Visual Storytelling", "Meta Ads", "Graphic Design", "Community Management"],
+  },
+  {
+    id: "krisna",
+    companyKey: "project.3.company",
+    dateKey: "project.3.date",
+    titleKey: "project.3.title",
+    tagsKey: "project.3.tags",
+    image: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/project-krisna-1_qu1rwg.jpg",
+    metrics: [
+      { value: "Consistent", label: "Content Production", detail: "Daily posts" },
+      { value: "High & Low", label: "Seasonal Campaigns", detail: "Optimized occupancy" },
+    ],
+    tools: ["Content Strategy", "Visual Storytelling", "Seasonal Campaigns", "Meta Ads", "Graphic Design"],
   },
 ];
 
@@ -59,6 +81,160 @@ function LetterReveal({ text, delay = 0 }: { text: string; delay?: number }) {
         </motion.span>
       ))}
     </>
+  );
+}
+
+function ProjectSlider() {
+  const { t } = useLanguage();
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(true);
+
+  useEffect(() => {
+    if (!autoPlay) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % projects.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [autoPlay]);
+
+  const goToPrevious = () => {
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+    setAutoPlay(false);
+  };
+
+  const goToNext = () => {
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+    setAutoPlay(false);
+  };
+
+  const currentProject = projects[currentIndex];
+
+  return (
+    <div className="space-y-6">
+      {/* Slider Container */}
+      <div className="relative overflow-hidden">
+        <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {projects.map((project) => (
+            <div key={project.id} className="w-full flex-shrink-0">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                {/* LEFT: Image Slider (40%) */}
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex justify-center lg:justify-start"
+                >
+                  <div className="relative w-full max-w-[280px]">
+                    <div className="rounded-xl overflow-hidden aspect-[4/5] bg-secondary/50">
+                      <img
+                        src={project.image}
+                        alt={t(project.titleKey)}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    {/* Dots Indicator */}
+                    <div className="flex justify-center gap-2 mt-4">
+                      {[0, 1, 2].map((i) => (
+                        <button
+                          key={i}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            i === 0 ? "bg-primary w-4" : "bg-primary/30 hover:bg-primary/50"
+                          }`}
+                          aria-label={`Image ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* RIGHT: Content (60%) */}
+                <motion.div
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="flex flex-col justify-center space-y-6"
+                >
+                  {/* Header */}
+                  <div>
+                    <div className="flex items-baseline gap-3 mb-2">
+                      <h3 className="font-display text-2xl lg:text-3xl font-bold">{t(project.companyKey)}</h3>
+                      <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">{t(project.dateKey)}</span>
+                    </div>
+                    <h4 className="font-body text-base lg:text-lg font-semibold text-primary mb-2">{t(project.titleKey)}</h4>
+                  </div>
+
+                  {/* Metrics */}
+                  <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg p-4 border border-border/30">
+                    <div className="font-mono text-xs text-primary uppercase tracking-wider mb-3">Key Metrics</div>
+                    <div className="space-y-3">
+                      {project.metrics.map((metric, i) => (
+                        <div key={i} className="pb-3 border-b border-border/20 last:pb-0 last:border-b-0">
+                          <div className="font-display text-xl font-bold">{metric.value}</div>
+                          <div className="font-body text-xs font-medium text-muted-foreground">{metric.label}</div>
+                          <div className="font-body text-xs text-muted-foreground/70">{metric.detail}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Tools & Skills */}
+                  <div>
+                    <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2">Tools & Skills</div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.tools.map((tool) => (
+                        <span
+                          key={tool}
+                          className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
+                        >
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* CTA */}
+                  <Link
+                    href="/work"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group w-fit"
+                  >
+                    View Project
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  </Link>
+                </motion.div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Navigation Buttons */}
+        <button
+          onClick={goToPrevious}
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 lg:-translate-x-20 w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-foreground transition-all duration-300 hover:scale-110"
+          aria-label="Previous project"
+        >
+          <ChevronLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={goToNext}
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 lg:translate-x-20 w-10 h-10 rounded-full bg-primary/10 hover:bg-primary/20 flex items-center justify-center text-foreground transition-all duration-300 hover:scale-110"
+          aria-label="Next project"
+        >
+          <ChevronRight className="w-5 h-5" />
+        </button>
+      </div>
+
+      {/* Progress Bar Indicator */}
+      <div className="flex items-center gap-3">
+        <div className="flex-1 h-1 bg-border/30 rounded-full overflow-hidden">
+          <motion.div
+            className="h-full bg-primary"
+            animate={{ width: `${((currentIndex + 1) / projects.length) * 100}%` }}
+            transition={{ duration: 0.5 }}
+          />
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">{currentIndex + 1} / {projects.length}</span>
+      </div>
+    </div>
   );
 }
 
@@ -171,7 +347,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ===== SELECTED WORK ===== */}
+      {/* ===== SELECTED PROJECTS (HORIZONTAL SLIDER) ===== */}
       <section className="py-24 lg:py-32">
         <div className="container">
           <motion.div
@@ -187,84 +363,13 @@ export default function Home() {
             </h2>
           </motion.div>
 
-          {/* Asymmetric Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-8">
-            {/* Large card */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.6 }}
-              className="md:col-span-7 group"
-            >
-              <Link href="/work" className="block">
-                <div className="relative overflow-hidden rounded-2xl aspect-[4/3]">
-                  <img
-                    src={selectedProjects[0].img}
-                    alt={t(selectedProjects[0].titleKey)}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <div className="font-mono text-xs text-white/70 uppercase tracking-wider mb-2">
-                      {t(selectedProjects[0].companyKey)}
-                    </div>
-                    <h3 className="font-display text-xl font-bold text-white leading-snug">
-                      {t(selectedProjects[0].titleKey)}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-
-            {/* Two stacked cards */}
-            <div className="md:col-span-5 flex flex-col gap-6 lg:gap-8">
-              {selectedProjects.slice(1).map((project, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{ duration: 0.6, delay: 0.15 * (i + 1) }}
-                  className="group flex-1"
-                >
-                  <Link href="/work" className="block h-full">
-                    <div className="relative overflow-hidden rounded-2xl h-full min-h-[200px]">
-                      <img
-                        src={project.img}
-                        alt={t(project.titleKey)}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute bottom-0 left-0 right-0 p-5 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="font-mono text-xs text-white/70 uppercase tracking-wider mb-1">
-                          {t(project.companyKey)}
-                        </div>
-                        <h3 className="font-display text-base font-bold text-white leading-snug">
-                          {t(project.titleKey)}
-                        </h3>
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-12 text-center"
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 0.6 }}
           >
-            <Link
-              href="/work"
-              className="inline-flex items-center gap-2 px-8 py-3.5 border-2 border-foreground/15 font-display font-semibold text-sm rounded-full hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300 group"
-            >
-              {t("selected.cta")}
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Link>
+            <ProjectSlider />
           </motion.div>
         </div>
       </section>

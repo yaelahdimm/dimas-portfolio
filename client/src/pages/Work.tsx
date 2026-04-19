@@ -18,13 +18,7 @@ const projects = [
     period: "September 2025 - March 2026",
     location: "Jakarta, Indonesia",
     color: "from-blue-500/20 to-cyan-500/20",
-    narrative: `PT DIN, a dynamic Jakarta-based company, faced a critical challenge in their digital advertising strategy: their Cost Per Click (CPC) was hovering at $3, making their lead generation campaigns unsustainable and inefficient. The goal was clear—optimize campaigns to reduce CPC below $1 while maintaining lead quality.
-
-I took ownership of their Meta Ads strategy from day one. Working with their Facebook and Instagram ad accounts, I conducted a comprehensive analysis of all active campaigns using Meta Ads Manager. I identified underperforming ad sets, audience segments with high costs, and creative variations that weren't resonating.
-
-The optimization process involved multiple layers of strategy: A/B testing on audience targeting to find high-intent prospects, creative testing to improve engagement rates, and strategic bidding adjustments. I refined landing page experiences to improve conversion rates, which directly improved Quality Scores in Meta's algorithm. Budget allocation was carefully adjusted to prioritize top-performing ad sets while pausing or restructuring underperformers.
-
-Within four weeks, the results were measurable and significant. CPC dropped from $3.00 to $0.89—a 67% reduction. But the impact went beyond the metric itself: lead volume increased by 3.5x, meaning the company could generate substantially more qualified leads at a fraction of the previous cost. This transformation made their digital marketing budget work harder and smarter.`,
+    narrativeKey: "projects.ptdin.narrative",
     metrics: [
       { label: "CPC Reduction", value: "67%", detail: "$3.00 → $0.89" },
       { label: "Lead Volume Increase", value: "3.5x", detail: "While maintaining quality" },
@@ -50,15 +44,7 @@ Within four weeks, the results were measurable and significant. CPC dropped from
     period: "May 2025 - August 2025",
     location: "Pangandaran, Indonesia",
     color: "from-amber-500/20 to-orange-500/20",
-    narrative: `Kokyo Coffee, a specialty coffee shop in Pangandaran, had a vision to become more than just a cafe—they wanted to build a community. When I joined as Digital Marketing & Content Creator, the challenge was to launch their brand into the digital space with authenticity and visual storytelling that would resonate with both locals and visitors.
-
-Starting from scratch, I developed a comprehensive digital marketing strategy focused on three pillars: awareness through consistent visual content, engagement through community interaction, and sales through targeted promotions. The strategy wasn't about aggressive selling—it was about inviting people into the Kokyo experience.
-
-I managed their social media brand accounts with meticulous content planning. Every post was intentional: showcasing the latte art process, capturing the ambiance of the cafe, highlighting the products, and telling stories of the Kokyo experience. I produced high-quality visual content including feed posts, carousel collections, and video reels that emphasized the craft and care behind every cup.
-
-Beyond organic content, I designed promotional materials—posters, banners, and digital campaign assets—that maintained visual consistency. I ran targeted Meta Ads campaigns to drive both online engagement and foot traffic to the physical location, optimizing for both awareness and conversions.
-
-The collaborative spirit was essential. I worked closely with the Kokyo team on promotional events and seasonal campaigns, ensuring that every marketing initiative aligned with the brand's values and community-first approach. The result was a thriving online presence that translated into a loyal community of customers who didn't just visit Kokyo—they became part of it.`,
+    narrativeKey: "projects.kokyo.narrative",
     metrics: [
       { label: "Brand Launch", value: "Zero to Community", detail: "Established engaged following" },
       { label: "Content Strategy", value: "Consistent Daily", detail: "Visual storytelling focus" },
@@ -94,17 +80,7 @@ The collaborative spirit was essential. I worked closely with the Kokyo team on 
     period: "July 2024 - May 2025",
     location: "Pangandaran, Indonesia",
     color: "from-teal-500/20 to-blue-500/20",
-    narrative: `Krisna Beach Hotel, a tropical resort in Pangandaran, needed a digital presence that captured the essence of their offering: luxury, relaxation, and unforgettable experiences by the beach. My role as Digital Marketing & Content Creator was to translate that vision into compelling digital content and strategic campaigns.
-
-I started by developing a comprehensive hotel digital marketing strategy that recognized the seasonal nature of the hospitality business. High season and low season require different approaches, different messaging, and different promotional tactics. I created daily content plans that adapted to these rhythms while maintaining consistent brand identity.
-
-The visual content production was central to the strategy. I designed and produced consistent, high-quality visual content for Instagram and Facebook—feed posts that showcased rooms and amenities, reels that captured the guest experience (sunset views, pool activities, dining moments), and stories that created a sense of immediacy and exclusivity. Every piece of content was crafted to inspire bookings.
-
-Beyond digital, I created offline promotional materials—flyers, posters, banners, and backdrops—that extended the brand presence into physical spaces. These materials supported promotional events and seasonal campaigns designed to drive occupancy during both peak and slower periods.
-
-The work involved analyzing content performance and engagement metrics to understand what resonated with the audience. This data-driven approach informed ongoing content refinement and campaign optimization. I promoted hotel events through effective visual storytelling, ensuring that special occasions and seasonal packages received the attention they deserved.
-
-The result was a cohesive digital and physical presence that elevated Krisna Beach Hotel's visibility and appeal, driving consistent bookings throughout the year.`,
+    narrativeKey: "projects.krisna.narrative",
     metrics: [
       { label: "Content Production", value: "Consistent", detail: "Feed, reels, stories daily" },
       { label: "Seasonal Campaigns", value: "High & Low Season", detail: "Optimized for occupancy" },
@@ -141,6 +117,22 @@ interface SliderProps {
   images: string[];
   videos?: { id: string; title: string; thumbnail: string }[];
   instagramLink: string;
+}
+
+interface ProjectData {
+  id: string;
+  brand: string;
+  role: string;
+  period: string;
+  location: string;
+  color: string;
+  narrativeKey: string;
+  metrics: { label: string; value: string; detail: string }[];
+  keyActivities: string[];
+  tools: string[];
+  images: string[];
+  instagramLink?: string;
+  videos?: { id: string; title: string; thumbnail: string }[];
 }
 
 function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
@@ -229,7 +221,7 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
 }
 
 export default function Work() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
 
   return (
     <div className="min-h-screen pt-24 lg:pt-32">
@@ -305,7 +297,7 @@ export default function Work() {
                     className="w-full max-w-[620px]"
                   >
                     <div className="prose prose-sm dark:prose-invert">
-                      {project.narrative.split("\n\n").slice(0, 2).map((paragraph, i) => (
+                      {(project as ProjectData).narrativeKey && t((project as ProjectData).narrativeKey).split("\n\n").slice(0, 2).map((paragraph, i) => (
                         <p key={i} className="font-body text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
                           {paragraph}
                         </p>
@@ -371,7 +363,7 @@ export default function Work() {
                     className="w-full max-w-[620px]"
                   >
                     <div className="prose prose-sm dark:prose-invert">
-                      {project.narrative.split("\n\n").slice(2).map((paragraph, i) => (
+                      {(project as ProjectData).narrativeKey && t((project as ProjectData).narrativeKey).split("\n\n").slice(2).map((paragraph, i) => (
                         <p key={i} className="font-body text-base text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
                           {paragraph}
                         </p>
@@ -394,7 +386,7 @@ export default function Work() {
                     className="lg:col-span-2"
                   >
                     <div className="prose prose-sm dark:prose-invert max-w-none">
-                      {project.narrative.split("\n\n").map((paragraph, i) => (
+                      {(project as ProjectData).narrativeKey && t((project as ProjectData).narrativeKey).split("\n\n").map((paragraph, i) => (
                         <p key={i} className="font-body text-base lg:text-lg text-muted-foreground leading-relaxed mb-6 last:mb-0 text-justify">
                           {paragraph}
                         </p>
