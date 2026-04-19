@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import { Mail, Phone, Linkedin, ArrowUpRight, MapPin, Send } from "lucide-react";
 
-const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776412196/Pas_Foto2_ttb6wu.png";
+const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776602744/IMG_3639.JPG_lcwnaq.jpg";
 
 const contactMethods = [
   {
