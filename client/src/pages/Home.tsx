@@ -87,24 +87,15 @@ function LetterReveal({ text, delay = 0 }: { text: string; delay?: number }) {
 function ProjectSlider() {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [autoPlay, setAutoPlay] = useState(true);
-
-  useEffect(() => {
-    if (!autoPlay) return;
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % projects.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [autoPlay]);
+  // Disabled auto-play for Home selected work slider - manual navigation only
+  const [autoPlay] = useState(false);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
-    setAutoPlay(false);
   };
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
-    setAutoPlay(false);
   };
 
   const currentProject = projects[currentIndex];

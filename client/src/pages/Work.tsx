@@ -69,8 +69,8 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/kokyo.co/",
     videos: [
-      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-1.jpg" },
-      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-2.jpg" },
+      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-1.jpg", link: "" },
+      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-2.jpg", link: "" },
     ],
   },
   {
@@ -106,16 +106,16 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
     videos: [
-      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-1.jpg" },
-      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-2.jpg" },
-      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-3.jpg" },
+      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-1.jpg", link: "" },
+      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-2.jpg", link: "" },
+      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-3.jpg", link: "" },
     ],
   },
 ];
 
 interface SliderProps {
   images: string[];
-  videos?: { id: string; title: string; thumbnail: string }[];
+  videos?: { id: string; title: string; thumbnail: string; link?: string }[];
   instagramLink: string;
 }
 
@@ -139,13 +139,49 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const allSlides = [...images, ...videos.map(v => v.thumbnail)];
   const totalSlides = allSlides.length;
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % totalSlides);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [totalSlides]);
+  // Get video data for current slide if it's a video
+  const getCurrentVideo = () => {
+    if (currentIndex >= images.length) {
+      return videos[currentIndex - images.length];
+    }
+    return null;
+  };
+
+  // Instagram-style: No auto-slide, manual navigation only
+  // Swipe support for mobile and desktop
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    setTouchEnd(e.changedTouches[0].clientX);
+    handleSwipe();
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setTouchStart(e.clientX);
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    setTouchEnd(e.clientX);
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+  };
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
@@ -157,11 +193,26 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
 
   const isVideo = (index: number) => index >= images.length;
 
+  // Reset touch positions after swipe
+  useEffect(() => {
+    setTouchStart(0);
+    setTouchEnd(0);
+  }, [currentIndex]);
+
+
+
   return (
     <div className="relative w-full max-w-[360px] mx-auto lg:mx-0 lg:ml-6">
-      <div className="relative overflow-hidden rounded-xl aspect-[4/5] bg-secondary/50">
+      <div
+        className="relative overflow-hidden rounded-xl aspect-[4/5] bg-secondary/50 cursor-grab active:cursor-grabbing"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={() => setTouchStart(0)}
+      >
         <div
-          className="flex h-full transition-transform duration-500 ease-out"
+          className="flex h-full transition-transform duration-300 ease-out"
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
           {allSlides.map((slide, index) => (
@@ -169,27 +220,34 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
               <img
                 src={slide}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover select-none"
+                draggable={false}
               />
-              {isVideo(index) && (
-                <a
-                  href={instagramLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors"
-                >
-                  <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300">
-                    <Play className="w-7 h-7 text-white fill-white ml-1" />
-                  </div>
-                </a>
-              )}
+              {isVideo(index) && (() => {
+                const video = videos[index - images.length];
+                const videoLink = video?.link || instagramLink;
+                return (
+                  <a
+                    href={videoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 hover:bg-black/40 transition-colors cursor-pointer"
+                    title={video?.title || "View on Instagram"}
+                  >
+                    <div className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border border-white/30 hover:bg-white/30 hover:scale-110 transition-all duration-300">
+                      <Play className="w-7 h-7 text-white fill-white ml-1" />
+                    </div>
+                  </a>
+                );
+              })()}
             </div>
           ))}
         </div>
 
+        {/* Navigation buttons - hidden on mobile, visible on desktop */}
         <button
           onClick={goToPrevious}
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
+          className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
           aria-label="Previous slide"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -197,20 +255,21 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
 
         <button
           onClick={goToNext}
-          className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
+          className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 flex items-center justify-center text-white transition-all duration-300 hover:scale-105"
           aria-label="Next slide"
         >
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
 
-      <div className="flex justify-center gap-2 mt-4">
+      {/* Instagram-style dot indicators */}
+      <div className="flex justify-center gap-1.5 mt-3">
         {allSlides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? "bg-primary w-6" : "bg-primary/30 hover:bg-primary/50"
+            className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+              index === currentIndex ? "bg-primary" : "bg-primary/40 hover:bg-primary/60"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />
@@ -238,7 +297,7 @@ export default function Work() {
               {t("work.heading")}
             </h1>
             <p className="font-body text-lg text-muted-foreground max-w-3xl leading-relaxed">
-              A collection of strategic digital marketing projects where I combined content strategy, visual storytelling, and data-driven optimization to build brands and drive measurable business results.
+              {t("work.description")}
             </p>
           </motion.div>
         </div>

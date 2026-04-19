@@ -49,6 +49,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Work Page
     "work.label": "Portfolio",
     "work.heading": "My Work",
+    "work.description": "A collection of strategic digital marketing projects where I combined content strategy, visual storytelling, and data-driven optimization to build brands and drive measurable business results.",
     "work.photos.label": "Photo Content",
     "work.photos.heading": "Visual Storytelling",
     "work.reels.label": "Video Reels",
@@ -128,14 +129,14 @@ const translations: Record<Language, Record<string, string>> = {
     "profile.skills.heading": "Keahlian & Alat",
     "profile.exp.label": "Perjalanan Karir",
     "profile.exp.heading": "Pengalaman",
-
     // Work Page
     "work.label": "Portofolio",
     "work.heading": "Karya Saya",
+    "work.description": "Koleksi proyek pemasaran digital strategis di mana saya menggabungkan strategi konten, visual storytelling, dan optimasi berbasis data untuk membangun merek dan mendorong hasil bisnis yang terukur.",
     "work.photos.label": "Konten Foto",
     "work.photos.heading": "Visual Storytelling",
     "work.reels.label": "Video Reels",
-    "work.reels.heading": "Konten Video",
+    "work.reels.heading": "Konten Motion",
 
     // Project Cards
     "project.1.company": "PT DIN",
