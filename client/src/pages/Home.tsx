@@ -116,91 +116,86 @@ function ProjectSlider() {
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {projects.map((project) => (
             <div key={project.id} className="w-full flex-shrink-0">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                {/* LEFT: Image Slider (40%) */}
-                <motion.div
-                  initial={{ opacity: 0, x: -40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="flex justify-center lg:justify-start"
-                >
-                  <div className="relative w-full max-w-[280px]">
-                    <div className="rounded-xl overflow-hidden aspect-[4/5] bg-secondary/50">
-                      <img
-                        src={project.image}
-                        alt={t(project.titleKey)}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    {/* Dots Indicator */}
-                    <div className="flex justify-center gap-2 mt-4">
-                      {[0, 1, 2].map((i) => (
-                        <button
-                          key={i}
-                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                            i === 0 ? "bg-primary w-4" : "bg-primary/30 hover:bg-primary/50"
-                          }`}
-                          aria-label={`Image ${i + 1}`}
-                        />
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* RIGHT: Content (60%) */}
-                <motion.div
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  className="flex flex-col justify-center space-y-6"
-                >
-                  {/* Header */}
-                  <div>
-                    <div className="flex items-baseline gap-3 mb-2">
-                      <h3 className="font-display text-2xl lg:text-3xl font-bold">{t(project.companyKey)}</h3>
-                      <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">{t(project.dateKey)}</span>
-                    </div>
-                    <h4 className="font-body text-base lg:text-lg font-semibold text-primary mb-2">{t(project.titleKey)}</h4>
-                  </div>
-
-                  {/* Metrics */}
-                  <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg p-4 border border-border/30">
-                    <div className="font-mono text-xs text-primary uppercase tracking-wider mb-3">Key Metrics</div>
-                    <div className="space-y-3">
-                      {project.metrics.map((metric, i) => (
-                        <div key={i} className="pb-3 border-b border-border/20 last:pb-0 last:border-b-0">
-                          <div className="font-display text-xl font-bold">{metric.value}</div>
-                          <div className="font-body text-xs font-medium text-muted-foreground">{metric.label}</div>
-                          <div className="font-body text-xs text-muted-foreground/70">{metric.detail}</div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Tools & Skills */}
-                  <div>
-                    <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-2">Tools & Skills</div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tools.map((tool) => (
-                        <span
-                          key={tool}
-                          className="px-3 py-1.5 glass-subtle rounded-full font-mono text-xs font-medium border border-border/30"
-                        >
-                          {tool}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* CTA */}
-                  <Link
-                    href="/work"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group w-fit"
+              {/* Card Container */}
+              <div className="bg-white dark:bg-slate-900 rounded-2xl shadow-sm overflow-hidden">
+                <div className="grid grid-cols-1 md:grid-cols-[1fr_1.2fr] gap-0 items-stretch">
+                  {/* LEFT: Image with Caption */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="flex flex-col justify-start p-6 md:p-8 bg-secondary/20 dark:bg-secondary/10"
                   >
-                    View Project
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                  </Link>
-                </motion.div>
+                    <div className="relative w-full">
+                      <div className="rounded-lg overflow-hidden aspect-[3/4] bg-secondary/50 mb-4">
+                        <img
+                          src={project.image}
+                          alt={t(project.titleKey)}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      {/* Caption */}
+                      <h4 className="font-body text-sm lg:text-base font-semibold text-foreground leading-snug">
+                        {t(project.titleKey)}
+                      </h4>
+                    </div>
+                  </motion.div>
+
+                  {/* RIGHT: Content */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="flex flex-col justify-center p-6 md:p-8 space-y-5"
+                  >
+                    {/* Header */}
+                    <div>
+                      <div className="flex items-baseline gap-3 mb-2">
+                        <h3 className="font-display text-2xl lg:text-3xl font-bold">{t(project.companyKey)}</h3>
+                        <span className="font-mono text-xs text-muted-foreground uppercase tracking-wider">{t(project.dateKey)}</span>
+                      </div>
+                      <h4 className="font-body text-base lg:text-lg font-semibold text-primary">{t(project.titleKey)}</h4>
+                    </div>
+
+                    {/* Metrics */}
+                    <div className="bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-lg p-5 border border-border/30">
+                      <div className="font-mono text-xs text-primary uppercase tracking-wider mb-4">Key Metrics</div>
+                      <div className="space-y-4">
+                        {project.metrics.map((metric, i) => (
+                          <div key={i} className="pb-4 border-b border-border/20 last:pb-0 last:border-b-0">
+                            <div className="font-display text-xl font-bold">{metric.value}</div>
+                            <div className="font-body text-sm font-medium text-muted-foreground">{metric.label}</div>
+                            <div className="font-body text-xs text-muted-foreground/70">{metric.detail}</div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Tools & Skills */}
+                    <div>
+                      <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider mb-3">Tools & Skills</div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tools.slice(0, 4).map((tool) => (
+                          <span
+                            key={tool}
+                            className="px-3 py-1.5 bg-white dark:bg-slate-800 rounded-full font-mono text-xs font-medium border border-border/30 hover:border-primary/50 transition-colors"
+                          >
+                            {tool}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* CTA */}
+                    <Link
+                      href="/work"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group w-fit"
+                    >
+                      View Project
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </Link>
+                  </motion.div>
+                </div>
               </div>
             </div>
           ))}
