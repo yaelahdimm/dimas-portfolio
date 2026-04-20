@@ -300,7 +300,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 1.2 }}
               className="font-display text-2xl lg:text-3xl font-semibold text-primary mb-6"
             >
-              {t("hero.tagline")}
+              {t("hero.headline")}
             </motion.p>
 
             <motion.p
@@ -309,7 +309,7 @@ export default function Home() {
               transition={{ duration: 0.6, delay: 1.4 }}
               className="font-body text-base lg:text-lg text-muted-foreground max-w-2xl mb-12"
             >
-              {t("hero.description")}
+              {t("hero.sub")}
             </motion.p>
 
             {/* CTAs */}
@@ -324,14 +324,14 @@ export default function Home() {
                 className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group"
               >
                 <Briefcase className="w-5 h-5 mr-2" />
-                {t("hero.cta1")}
+                {t("hero.cta.hire")}
               </Link>
               <Link
                 href="/work"
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
               >
                 <ArrowDown className="w-5 h-5 mr-2" />
-                {t("hero.cta2")}
+                {t("hero.cta.work")}
               </Link>
               <a
                 href={CV_URL}
@@ -339,7 +339,7 @@ export default function Home() {
                 className="inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
               >
                 <Download className="w-5 h-5 mr-2" />
-                {t("hero.cta3")}
+                {t("hero.cta.cv")}
               </a>
             </motion.div>
           </div>
@@ -373,8 +373,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-16"
           >
-            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-4">{t("home.selectedWork")}</h2>
-            <p className="font-body text-muted-foreground text-lg">{t("home.selectedWorkDesc")}</p>
+            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-4">{t("selected.heading")}</h2>
+            <p className="font-body text-muted-foreground text-lg">{t("selected.label")}</p>
           </motion.div>
 
           <ProjectSlider />
@@ -402,13 +402,13 @@ export default function Home() {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="font-display text-3xl lg:text-4xl font-bold">{t("home.about")}</h3>
-              <p className="font-body text-muted-foreground text-lg leading-relaxed">{t("home.aboutDesc")}</p>
+              <h3 className="font-display text-3xl lg:text-4xl font-bold">{t("teaser.heading")}</h3>
+              <p className="font-body text-muted-foreground text-lg leading-relaxed">{t("teaser.text")}</p>
               <Link
                 href="/profile"
                 className="inline-flex items-center gap-2 text-primary font-display font-semibold hover:gap-3 transition-all duration-300"
               >
-                {t("home.learnMore")} <ArrowRight className="w-4 h-4" />
+                {t("teaser.cta")} <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
           </div>
