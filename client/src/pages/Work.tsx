@@ -157,8 +157,8 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    setTouchEnd(e.changedTouches[0].clientX);
-    handleSwipe();
+    const endX = e.changedTouches[0].clientX;
+    handleSwipe(touchStart, endX);
   };
 
   const handleMouseDown = (e: React.MouseEvent) => {
@@ -166,13 +166,13 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
   };
 
   const handleMouseUp = (e: React.MouseEvent) => {
-    setTouchEnd(e.clientX);
-    handleSwipe();
+    const endX = e.clientX;
+    handleSwipe(touchStart, endX);
   };
 
-  const handleSwipe = () => {
-    if (!touchStart || !touchEnd) return;
-    const distance = touchStart - touchEnd;
+  const handleSwipe = (startX: number, endX: number) => {
+    if (!startX || !endX) return;
+    const distance = startX - endX;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
 
@@ -181,6 +181,8 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
     } else if (isRightSwipe) {
       goToPrevious();
     }
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   const goToPrevious = () => {
@@ -193,11 +195,7 @@ function ImageSlider({ images, videos = [], instagramLink }: SliderProps) {
 
   const isVideo = (index: number) => index >= images.length;
 
-  // Reset touch positions after swipe
-  useEffect(() => {
-    setTouchStart(0);
-    setTouchEnd(0);
-  }, [currentIndex]);
+
 
 
 

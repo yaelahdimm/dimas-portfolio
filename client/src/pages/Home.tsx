@@ -87,8 +87,8 @@ function LetterReveal({ text, delay = 0 }: { text: string; delay?: number }) {
 function ProjectSlider() {
   const { t } = useLanguage();
   const [currentIndex, setCurrentIndex] = useState(0);
-  // Disabled auto-play for Home selected work slider - manual navigation only
-  const [autoPlay] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const goToPrevious = () => {
     setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
@@ -98,12 +98,52 @@ function ProjectSlider() {
     setCurrentIndex((prev) => (prev + 1) % projects.length);
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    const endX = e.changedTouches[0].clientX;
+    handleSwipe(touchStart, endX);
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setTouchStart(e.clientX);
+  };
+
+  const handleMouseUp = (e: React.MouseEvent) => {
+    const endX = e.clientX;
+    handleSwipe(touchStart, endX);
+  };
+
+  const handleSwipe = (startX: number, endX: number) => {
+    if (!startX || !endX) return;
+    const distance = startX - endX;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      goToNext();
+    } else if (isRightSwipe) {
+      goToPrevious();
+    }
+    setTouchStart(0);
+    setTouchEnd(0);
+  };
+
   const currentProject = projects[currentIndex];
 
   return (
     <div className="space-y-6">
       {/* Slider Container */}
-      <div className="relative overflow-hidden">
+      <div
+        className="relative overflow-hidden cursor-grab active:cursor-grabbing"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={() => setTouchStart(0)}
+      >
         <div className="flex transition-transform duration-700 ease-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {projects.map((project) => (
             <div key={project.id} className="w-full flex-shrink-0">
@@ -123,6 +163,7 @@ function ProjectSlider() {
                           src={project.image}
                           alt={t(project.titleKey)}
                           className="w-full h-full object-cover"
+                          draggable={false}
                         />
                       </div>
                       {/* Caption */}
@@ -248,163 +289,126 @@ export default function Home() {
             </motion.div>
 
             <h1 className="font-display font-bold text-[clamp(2.5rem,8vw,7rem)] leading-[0.95] tracking-tight mb-8">
-              <LetterReveal text="Dimas Stya" delay={0.4} />
+              <LetterReveal text="Dimas Stya" delay={0.3} />
               <br />
-              <LetterReveal text="Nugraha" delay={0.8} />
+              <LetterReveal text="Nugraha" delay={0.5} />
             </h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.3 }}
-              className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-primary mb-6 leading-tight"
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="font-display text-2xl lg:text-3xl font-semibold text-primary mb-6"
             >
-              {t("hero.headline")}
+              {t("hero.tagline")}
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.5 }}
-              className="font-body text-lg sm:text-xl text-muted-foreground max-w-2xl mb-12 leading-relaxed"
+              transition={{ duration: 0.6, delay: 1.4 }}
+              className="font-body text-base lg:text-lg text-muted-foreground max-w-2xl mb-12"
             >
-              {t("hero.sub")}
+              {t("hero.description")}
             </motion.p>
 
+            {/* CTAs */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.7 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 0.6, delay: 1.6 }}
+              className="flex flex-col sm:flex-row gap-4"
             >
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 bg-primary text-primary-foreground font-display font-semibold rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group"
               >
-                <Briefcase className="w-4 h-4" />
-                {t("hero.cta.hire")}
+                <Briefcase className="w-5 h-5 mr-2" />
+                {t("hero.cta1")}
               </Link>
               <Link
                 href="/work"
-                className="inline-flex items-center gap-2 px-7 py-3.5 border-2 border-foreground/20 font-display font-semibold text-sm rounded-full hover:border-primary hover:text-primary hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
               >
-                {t("hero.cta.work")}
-                <ArrowDown className="w-4 h-4" />
+                <ArrowDown className="w-5 h-5 mr-2" />
+                {t("hero.cta2")}
               </Link>
               <a
                 href={CV_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 glass font-display font-semibold text-sm rounded-full hover:scale-105 transition-all duration-300"
+                download
+                className="inline-flex items-center justify-center px-8 py-4 border-2 border-foreground/20 text-foreground font-display font-semibold rounded-full hover:border-primary hover:text-primary transition-all duration-300"
               >
-                <Download className="w-4 h-4" />
-                {t("hero.cta.cv")}
+                <Download className="w-5 h-5 mr-2" />
+                {t("hero.cta3")}
               </a>
             </motion.div>
           </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 2.2, duration: 1 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2"
-          >
-            <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}>
-              <ArrowDown className="w-5 h-5 text-muted-foreground" />
-            </motion.div>
-          </motion.div>
         </div>
       </section>
 
       {/* ===== MARQUEE ===== */}
-      <div className="border-y border-border/50 bg-secondary/30 py-4 overflow-hidden">
-        <style>{`
-          @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-          .marquee-track { animation: marquee 25s linear infinite; }
-          .marquee-track:hover { animation-play-state: paused; }
-        `}</style>
-        <div className="marquee-track flex whitespace-nowrap" style={{ width: "max-content" }}>
-          {[...marqueeItems, ...marqueeItems].map((item, i) => (
-            <span key={i} className="mx-6 font-display text-sm font-medium text-muted-foreground/60 flex items-center gap-3">
-              {item}
-              <span className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-            </span>
-          ))}
-        </div>
-      </div>
-
-      {/* ===== SELECTED PROJECTS (HORIZONTAL SLIDER) ===== */}
-      <section className="py-24 lg:py-32">
-        <div className="container">
+      <section className="py-12 lg:py-16 border-y border-border/30 bg-secondary/5">
+        <div className="overflow-hidden">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="mb-16"
+            className="flex gap-8 whitespace-nowrap"
+            animate={{ x: [0, -1000] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           >
-            <div className="section-label mb-4">{t("selected.label")}</div>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-              {t("selected.heading")}
-            </h2>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6 }}
-          >
-            <ProjectSlider />
+            {[...marqueeItems, ...marqueeItems].map((item, i) => (
+              <span key={i} className="font-display text-lg font-semibold text-foreground/60 flex-shrink-0">
+                {item} •
+              </span>
+            ))}
           </motion.div>
         </div>
       </section>
 
-      {/* ===== ABOUT TEASER ===== */}
-      <section className="py-24 lg:py-32 bg-secondary/30">
+      {/* ===== SELECTED WORK ===== */}
+      <section className="py-20 lg:py-32">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="font-display text-4xl lg:text-5xl font-bold mb-4">{t("home.selectedWork")}</h2>
+            <p className="font-body text-muted-foreground text-lg">{t("home.selectedWorkDesc")}</p>
+          </motion.div>
+
+          <ProjectSlider />
+        </div>
+      </section>
+
+      {/* ===== ABOUT TEASER ===== */}
+      <section className="py-20 lg:py-32 bg-secondary/5">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <motion.div
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="rounded-2xl overflow-hidden aspect-[3/4]"
             >
-              <div className="relative">
-                <div className="rounded-2xl overflow-hidden">
-                  <img
-                    src={ABOUT_IMG}
-                    alt="Dimas Stya Nugraha"
-                    className="w-full aspect-[3/4] object-cover"
-                  />
-                </div>
-                {/* Glass stat card */}
-                <div className="absolute -bottom-6 -right-4 lg:-right-8 glass rounded-xl p-4 sm:p-5">
-                  <div className="font-display text-3xl font-bold text-primary">3+</div>
-                  <div className="font-mono text-xs text-muted-foreground uppercase tracking-wider">Years Experience</div>
-                </div>
-              </div>
+              <img src={ABOUT_IMG} alt="Dimas" className="w-full h-full object-cover" />
             </motion.div>
 
             <motion.div
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.7, delay: 0.15 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="space-y-6"
             >
-              <div className="section-label mb-4">{t("teaser.label")}</div>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight">
-                {t("teaser.heading")}
-              </h2>
-              <p className="font-body text-lg text-muted-foreground leading-relaxed mb-8">
-                {t("teaser.text")}
-              </p>
+              <h3 className="font-display text-3xl lg:text-4xl font-bold">{t("home.about")}</h3>
+              <p className="font-body text-muted-foreground text-lg leading-relaxed">{t("home.aboutDesc")}</p>
               <Link
                 href="/profile"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-primary text-primary-foreground font-display font-semibold text-sm rounded-full hover:scale-105 hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 group"
+                className="inline-flex items-center gap-2 text-primary font-display font-semibold hover:gap-3 transition-all duration-300"
               >
-                {t("teaser.cta")}
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                {t("home.learnMore")} <ArrowRight className="w-4 h-4" />
               </Link>
             </motion.div>
           </div>

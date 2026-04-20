@@ -66,14 +66,14 @@ export function ThemeProvider({
     }
   }, [theme, switchable]);
 
-  const toggleTheme = switchable
+  const toggleThemeFn = switchable
     ? () => {
         setTheme(prev => (prev === "light" ? "dark" : "light"));
       }
     : undefined;
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, switchable }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme: toggleThemeFn, switchable }}>
       {children}
     </ThemeContext.Provider>
   );
