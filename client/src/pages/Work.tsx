@@ -69,8 +69,8 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/kokyo.co/",
     videos: [
-      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://www.instagram.com/p/DNNQ4BVPMTf/media/?size=l", link: "https://www.instagram.com/kokyo.co/reel/DNNQ4BVPMTf/" },
-      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://www.instagram.com/p/DMUScoePNtt/media/?size=l", link: "https://www.instagram.com/kokyo.co/reel/DMUScoePNtt/" },
+      { id: "kokyo-1", title: "STRAVA Campaign", thumbnail: "https://www.instagram.com/p/DNNQ4BVPMTf/media/?size=l", link: "https://www.instagram.com/kokyo.co/reel/DNNQ4BVPMTf/" },
+      { id: "kokyo-2", title: "Comunity Campaign", thumbnail: "https://www.instagram.com/p/DMUScoePNtt/media/?size=l", link: "https://www.instagram.com/kokyo.co/reel/DMUScoePNtt/" },
     ],
   },
   {
@@ -106,9 +106,9 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
     videos: [
-      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://www.instagram.com/p/DH0mYN0MUJA/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DH0mYN0MUJA/" },
-      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://www.instagram.com/p/DGuy5pKy1dQ/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DGuy5pKy1dQ/" },
-      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://www.instagram.com/p/DEoxo_AyZF8/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DEoxo_AyZF8/" },
+      { id: "krisna-1", title: "Runmadhan Documentation", thumbnail: "https://www.instagram.com/p/DH0mYN0MUJA/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DH0mYN0MUJA/" },
+      { id: "krisna-2", title: "Iftar Kareem", thumbnail: "https://www.instagram.com/p/DGuy5pKy1dQ/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DGuy5pKy1dQ/" },
+      { id: "krisna-3", title: "Daily Documentation", thumbnail: "https://www.instagram.com/p/DEoxo_AyZF8/media/?size=l", link: "https://www.instagram.com/krisnabeachhotel/reel/DEoxo_AyZF8/" },
     ],
   },
 ];
