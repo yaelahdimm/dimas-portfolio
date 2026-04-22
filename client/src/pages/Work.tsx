@@ -69,8 +69,8 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/kokyo.co/",
     videos: [
-      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-1.jpg", link: "" },
-      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-2.jpg", link: "" },
+      { id: "kokyo-1", title: "Latte Art Process", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-1.jpg", link: "https://www.instagram.com/kokyo.co/reel/DNNQ4BVPMTf/" },
+      { id: "kokyo-2", title: "Cafe Experience", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419546/video-kokyo-2.jpg", link: "https://www.instagram.com/kokyo.co/reel/DMUScoePNtt/" },
     ],
   },
   {
@@ -106,9 +106,9 @@ const projects = [
     ],
     instagramLink: "https://www.instagram.com/krisnabeachhotel/",
     videos: [
-      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-1.jpg", link: "" },
-      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-2.jpg", link: "" },
-      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-3.jpg", link: "" },
+      { id: "krisna-1", title: "Sunrise Balcony View", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-1.jpg", link: "https://www.instagram.com/krisnabeachhotel/reel/DH0mYN0MUJA/" },
+      { id: "krisna-2", title: "Pool Party Vibes", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-2.jpg", link: "https://www.instagram.com/krisnabeachhotel/reel/DGuy5pKy1dQ/" },
+      { id: "krisna-3", title: "Beachfront Dinner", thumbnail: "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776419660/video-krisna-3.jpg", link: "https://www.instagram.com/krisnabeachhotel/reel/DEoxo_AyZF8/" },
     ],
   },
 ];
