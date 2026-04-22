@@ -8,7 +8,7 @@ import { useLanguage } from "@/contexts/LanguageContext";
 import { motion } from "framer-motion";
 import {
   Camera, Film, Palette, BarChart3, Megaphone, PenTool,
-  GraduationCap, Briefcase
+  Briefcase
 } from "lucide-react";
 
 const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776412196/Pas_Foto2_ttb6wu.png";
@@ -80,16 +80,7 @@ const experiences = [
       "Mengelola kampanye musiman untuk okupansi puncak",
     ],
   },
-  {
-    type: "edu" as const,
-    companyKey: "",
-    role: "Universitas Bina Sarana Informatika",
-    roleId: "Universitas Bina Sarana Informatika",
-    dateKey: "",
-    date: "2021 - 2024",
-    points: ["Bachelor of Communication Science (S1 Ilmu Komunikasi)"],
-    pointsId: ["Sarjana Ilmu Komunikasi (S1 Ilmu Komunikasi)"],
-  },
+
 ];
 
 export default function Profile() {
@@ -259,17 +250,13 @@ export default function Profile() {
                   <div className="glass rounded-xl p-6">
                     <div className="flex items-start justify-between flex-wrap gap-2 mb-3">
                       <div className="flex items-center gap-2">
-                        {exp.type === "edu" ? (
-                          <GraduationCap className="w-4 h-4 text-primary" />
-                        ) : (
-                          <Briefcase className="w-4 h-4 text-primary" />
-                        )}
+                        <Briefcase className="w-4 h-4 text-primary" />
                         <span className="font-mono text-xs text-primary uppercase tracking-wider">
-                          {exp.companyKey ? t(exp.companyKey) : "Education"}
+                          {t(exp.companyKey)}
                         </span>
                       </div>
                       <span className="font-mono text-xs text-muted-foreground">
-                        {exp.dateKey ? t(exp.dateKey) : exp.date}
+                        {t(exp.dateKey)}
                       </span>
                     </div>
                     <h3 className="font-display text-lg font-semibold mb-3">
