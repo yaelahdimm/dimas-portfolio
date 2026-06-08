@@ -23,61 +23,68 @@ const skills = [
 ];
 
 const tools = [
-  "Adobe Photoshop", "Adobe Illustrator", "Adobe Lightroom", "Microsoft Office",
-  "Canva", "CapCut", "Meta Business Suite",
-  "Google Analytics", "Google Ads", "Google Workspace", "TikTok Ads", "AI Tools"
+  "Meta Ads", "Facebook Ads", "Instagram Ads", "Meta Business Suite",
+  "Adobe Photoshop", "Adobe Lightroom", "Canva", "Adobe Illustrator",
+  "CapCut", "Google Workspace", "Microsoft Office", "Notion",
+  "ChatGPT", "Google Gemini", "Perplexity AI"
 ];
 
 const experiences = [
   {
     type: "work" as const,
     companyKey: "project.1.company",
-    role: "Digital Marketing Specialist",
-    roleId: "Spesialis Pemasaran Digital",
+    role: "Digital Marketing Staff",
+    roleId: "Staf Pemasaran Digital",
     dateKey: "project.1.date",
     points: [
-      "Managed Meta Ads campaigns with CPC optimization",
-      "Generated qualified leads through targeted advertising",
-      "Analyzed campaign performance and provided strategic recommendations",
+      "Managed Facebook and Instagram Meta Ads campaigns for lead generation",
+      "Planned campaign strategy, audience targeting, and budget allocation",
+      "Optimized targeting, creatives, and campaign budget to improve lead quality and cost efficiency",
+      "Reduced CPC from $3.00 to $0.89 (67% reduction) and increased lead volume by 3.5x",
     ],
     pointsId: [
-      "Mengelola kampanye Meta Ads dengan optimasi CPC",
-      "Menghasilkan leads berkualitas melalui iklan tertarget",
-      "Menganalisis performa kampanye dan memberikan rekomendasi strategis",
+      "Mengelola kampanye Meta Ads Facebook dan Instagram untuk lead generation",
+      "Merencanakan strategi kampanye, targeting audiens, dan alokasi budget",
+      "Mengoptimalkan targeting, kreatif, dan budget kampanye untuk meningkatkan kualitas lead dan efisiensi biaya",
+      "Mengurangi CPC dari $3.00 menjadi $0.89 (pengurangan 67%) dan meningkatkan volume lead sebesar 3.5x",
     ],
   },
   {
     type: "work" as const,
     companyKey: "project.2.company",
-    role: "Content Creator & Ads Specialist",
-    roleId: "Pembuat Konten & Spesialis Iklan",
+    role: "Digital Marketing & Content Creator",
+    roleId: "Digital Marketing & Content Creator",
     dateKey: "project.2.date",
     points: [
-      "Built digital presence from zero to engaged community",
-      "Created photo and video content for social media",
-      "Ran Meta Ads campaigns to drive foot traffic",
+      "Developed digital marketing and content strategies for brand awareness and sales growth",
+      "Managed social media operations, content planning, and audience engagement",
+      "Created promotional designs and digital campaign assets (posters, banners, social content)",
+      "Executed and optimized Meta Ads campaigns for promotional goals and campaign reach",
     ],
     pointsId: [
-      "Membangun kehadiran digital dari nol hingga komunitas yang terlibat",
-      "Membuat konten foto dan video untuk media sosial",
-      "Menjalankan kampanye Meta Ads untuk mendorong kunjungan",
+      "Mengembangkan strategi digital marketing dan konten untuk awareness dan pertumbuhan penjualan",
+      "Mengelola operasi media sosial, perencanaan konten, dan engagement audiens",
+      "Membuat desain promosi dan aset kampanye digital (poster, banner, konten sosial)",
+      "Melaksanakan dan mengoptimalkan kampanye Meta Ads untuk tujuan promosi dan jangkauan kampanye",
     ],
   },
   {
     type: "work" as const,
     companyKey: "project.3.company",
-    role: "Social Media & Content Specialist",
-    roleId: "Spesialis Media Sosial & Konten",
+    role: "Digital Marketing & Content Creator",
+    roleId: "Digital Marketing & Content Creator",
     dateKey: "project.3.date",
     points: [
-      "Planned and executed content calendars across platforms",
-      "Produced visual content driving hotel bookings",
-      "Managed seasonal campaigns for peak occupancy",
+      "Developed hotel digital marketing strategies recognizing seasonal hospitality business patterns",
+      "Produced Instagram and Facebook content (feed posts, reels, stories) showcasing rooms and guest experiences",
+      "Created offline promotional materials (flyers, posters, banners, backdrops) for events and campaigns",
+      "Analyzed content performance and engagement to optimize promotional strategies and drive bookings",
     ],
     pointsId: [
-      "Merencanakan dan melaksanakan kalender konten lintas platform",
-      "Memproduksi konten visual yang mendorong pemesanan hotel",
-      "Mengelola kampanye musiman untuk okupansi puncak",
+      "Mengembangkan strategi digital marketing hotel yang mempertimbangkan pola bisnis perhotelan musiman",
+      "Memproduksi konten Instagram dan Facebook (feed posts, reels, stories) menampilkan kamar dan pengalaman tamu",
+      "Membuat materi promosi offline (flyer, poster, banner, backdrop) untuk event dan kampanye",
+      "Menganalisis performa konten dan engagement untuk mengoptimalkan strategi promosi dan mendorong pemesanan",
     ],
   },
 

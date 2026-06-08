@@ -19,7 +19,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     "hero.label": "Digital Creative",
     "hero.headline": "I craft stories that convert.",
-    "hero.sub": "Content strategist, visual storyteller, and Meta Ads specialist turning brands into movements. Based in Jakarta, open worldwide.",
+    "hero.sub": "Digital Marketing and Social Media professional experienced in managing brand social media operations, content strategy, Meta Ads campaigns, and visual content production across hospitality, F&B, and corporate environments. Based in Jakarta, open worldwide.",
     "hero.cta.hire": "Hire Me",
     "hero.cta.work": "View Work",
     "hero.cta.cv": "Download CV",
@@ -38,8 +38,8 @@ const translations: Record<Language, Record<string, string>> = {
     // Profile Page
     "profile.label": "My Journey",
     "profile.heading": "About",
-    "profile.p1": "I didn't start in marketing — I started with curiosity. A Communications degree from Universitas Bina Sarana Informatika gave me the theory, but the real education came from building brands from scratch.",
-    "profile.p2": "From running Meta Ads campaigns that actually convert, to designing scroll-stopping content for hotels and coffee shops, I've learned that great marketing isn't about shouting louder — it's about telling better stories.",
+    "profile.p1": "I'm a Digital Marketing and Social Media professional with hands-on experience across hospitality, F&B, and corporate sectors. My background in Communication Science from Universitas Bina Sarana Informatika (GPA: 3.36/4.00) combined with practical experience has shaped my approach to brand building and digital strategy.",
+    "profile.p2": "I specialize in campaign planning, creative testing, and performance monitoring. From optimizing Meta Ads campaigns to managing social media operations and creating promotional assets, I focus on measurable outcomes: lead generation, brand awareness, engagement, and conversion goals.",
     "profile.p3": "I combine visual storytelling with data-driven strategy. Every piece of content I create has a purpose: drive engagement, build awareness, or generate leads. No fluff, just results.",
     "profile.skills.label": "What I Bring",
     "profile.skills.heading": "Skills & Tools",
@@ -79,7 +79,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Contact Page
     "contact.label": "Get In Touch",
     "contact.heading": "Let's work together.",
-    "contact.sub": "Got a project in mind? Looking for a creative partner? I'm always open to new opportunities — remote, hybrid, or freelance.",
+    "contact.sub": "Got a project in mind? Looking for a creative partner? I'm always open to new opportunities — remote, hybrid, or freelance. Reach out via email, WhatsApp, or LinkedIn.",
     "contact.cta": "Say Hello",
     "contact.email": "Email",
     "contact.whatsapp": "WhatsApp",
@@ -103,7 +103,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Hero
     "hero.label": "Digital Creative",
     "hero.headline": "Saya merancang cerita yang menghasilkan.",
-    "hero.sub": "Content strategist, visual storyteller, dan Meta Ads specialist yang mengubah brand menjadi gerakan. Berbasis di Jakarta, terbuka untuk seluruh dunia.",
+    "hero.sub": "Profesional Digital Marketing dan Social Media berpengalaman dalam mengelola operasi media sosial brand, strategi konten, kampanye Meta Ads, dan produksi konten visual di sektor perhotelan, F&B, dan korporat. Berbasis di Jakarta, terbuka untuk seluruh dunia.",
     "hero.cta.hire": "Hubungi Saya",
     "hero.cta.work": "Lihat Karya",
     "hero.cta.cv": "Unduh CV",
@@ -122,8 +122,8 @@ const translations: Record<Language, Record<string, string>> = {
     // Profile Page
     "profile.label": "Perjalanan Saya",
     "profile.heading": "Tentang",
-    "profile.p1": "Saya tidak memulai dari marketing — saya memulai dari rasa ingin tahu. Gelar Ilmu Komunikasi dari Universitas Bina Sarana Informatika memberi saya teori, tapi pendidikan sesungguhnya datang dari membangun brand dari nol.",
-    "profile.p2": "Dari menjalankan kampanye Meta Ads yang benar-benar mengkonversi, hingga mendesain konten yang menghentikan scroll untuk hotel dan coffee shop, saya belajar bahwa marketing yang hebat bukan soal berteriak lebih keras — tapi soal bercerita lebih baik.",
+    "profile.p1": "Saya adalah profesional Digital Marketing dan Social Media dengan pengalaman praktis di sektor perhotelan, F&B, dan korporat. Latar belakang saya di Ilmu Komunikasi dari Universitas Bina Sarana Informatika (IPK: 3.36/4.00) dikombinasikan dengan pengalaman praktis telah membentuk pendekatan saya terhadap brand building dan strategi digital.",
+    "profile.p2": "Saya spesialis dalam perencanaan kampanye, creative testing, dan performance monitoring. Dari mengoptimalkan kampanye Meta Ads hingga mengelola operasi media sosial dan membuat aset promosi, saya fokus pada hasil yang terukur: lead generation, brand awareness, engagement, dan conversion goals.",
     "profile.p3": "Saya menggabungkan visual storytelling dengan strategi berbasis data. Setiap konten yang saya buat punya tujuan: mendorong engagement, membangun awareness, atau menghasilkan leads. Tanpa basa-basi, hanya hasil.",
     "profile.skills.label": "Yang Saya Bawa",
     "profile.skills.heading": "Keahlian & Alat",
@@ -162,7 +162,7 @@ const translations: Record<Language, Record<string, string>> = {
     // Contact Page
     "contact.label": "Hubungi Saya",
     "contact.heading": "Mari bekerja sama.",
-    "contact.sub": "Punya proyek? Mencari partner kreatif? Saya selalu terbuka untuk peluang baru — remote, hybrid, atau freelance.",
+    "contact.sub": "Punya proyek? Mencari partner kreatif? Saya selalu terbuka untuk peluang baru — remote, hybrid, atau freelance. Hubungi saya melalui email, WhatsApp, atau LinkedIn.",
     "contact.cta": "Sapa Saya",
     "contact.email": "Email",
     "contact.whatsapp": "WhatsApp",

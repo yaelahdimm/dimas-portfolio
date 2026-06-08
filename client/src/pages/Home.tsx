@@ -11,7 +11,7 @@ import { Link } from "wouter";
 import { useState, useEffect } from "react";
 
 const HERO_BG = "https://d2xsxph8kpxj0f.cloudfront.net/310519663565070617/6UrdsYvWgvxtjH3oZEHsTo/hero-blue-JD8yEEkvYqxjJoHXcbh76q.webp";
-const CV_URL = "https://drive.google.com/file/d/18XeQfhDLtQIifHGyb_wICXkBKUXZNjYl/view?usp=sharing";
+const CV_URL = "/manus-storage/Dimasstyanugrahaen_f76f54a7.pdf";
 const ABOUT_IMG = "https://res.cloudinary.com/djqh6g7bm/image/upload/v1776602743/IMG_3640.JPG_qv1btn.jpg";
 
 const projects = [
