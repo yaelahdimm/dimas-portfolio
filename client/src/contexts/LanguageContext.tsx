@@ -71,6 +71,16 @@ const translations: Record<Language, Record<string, string>> = {
     "project.3.title": "Driving hotel occupancy through visual storytelling",
     "project.3.tags": "Visual Storytelling,Content Creation,Seasonal Campaigns",
 
+    "project.4.company": "PT Krisna Beach Hotel",
+    "project.4.date": "Mar 2024 - Jun 2024",
+    "project.4.title": "Front Office Operations & Guest Services",
+    "project.4.tags": "Customer Service,Operations,Guest Relations",
+
+    "project.5.company": "PT Djasa Autosarana Transports",
+    "project.5.date": "Aug 2022 - Oct 2022",
+    "project.5.title": "Visual Content Creation & Branding",
+    "project.5.tags": "Graphic Design,Visual Content,Photography",
+
     // Project Narratives (Work Page)
     "projects.ptdin.narrative": "PT DIN, a dynamic Jakarta-based company, faced a critical challenge in their digital advertising strategy: their Cost Per Click (CPC) was hovering at $3, making their lead generation campaigns unsustainable and inefficient. The goal was clear—optimize campaigns to reduce CPC below $1 while maintaining lead quality.\n\nI took ownership of their Meta Ads strategy from day one. Working with their Facebook and Instagram ad accounts, I conducted a comprehensive analysis of all active campaigns using Meta Ads Manager. I identified underperforming ad sets, audience segments with high costs, and creative variations that weren't resonating.\n\nThe optimization process involved multiple layers of strategy: A/B testing on audience targeting to find high-intent prospects, creative testing to improve engagement rates, and strategic bidding adjustments. I refined landing page experiences to improve conversion rates, which directly improved Quality Scores in Meta's algorithm. Budget allocation was carefully adjusted to prioritize top-performing ad sets while pausing or restructuring underperformers.\n\nWithin four weeks, the results were measurable and significant. CPC dropped from $3.00 to $0.89—a 67% reduction. But the impact went beyond the metric itself: lead volume increased by 3.5x, meaning the company could generate substantially more qualified leads at a fraction of the previous cost. This transformation made their digital marketing budget work harder and smarter.",
     "projects.kokyo.narrative": "Kokyo Coffee, a specialty coffee shop in Pangandaran, had a vision to become more than just a cafe—they wanted to build a community. When I joined as Digital Marketing & Content Creator, the challenge was to launch their brand into the digital space with authenticity and visual storytelling that would resonate with both locals and visitors.\n\nStarting from scratch, I developed a comprehensive digital marketing strategy focused on three pillars: awareness through consistent visual content, engagement through community interaction, and sales through targeted promotions. The strategy wasn't about aggressive selling—it was about inviting people into the Kokyo experience.\n\nI managed their social media brand accounts with meticulous content planning. Every post was intentional: showcasing the latte art process, capturing the ambiance of the cafe, highlighting the products, and telling stories of the Kokyo experience. I produced high-quality visual content including feed posts, carousel collections, and video reels that emphasized the craft and care behind every cup.\n\nBeyond organic content, I designed promotional materials—posters, banners, and digital campaign assets—that maintained visual consistency. I ran targeted Meta Ads campaigns to drive both online engagement and foot traffic to the physical location, optimizing for both awareness and conversions.\n\nThe collaborative spirit was essential. I worked closely with the Kokyo team on promotional events and seasonal campaigns, ensuring that every marketing initiative aligned with the brand's values and community-first approach. The result was a thriving online presence that translated into a loyal community of customers who didn't just visit Kokyo—they became part of it.",
@@ -153,6 +163,16 @@ const translations: Record<Language, Record<string, string>> = {
     "project.3.date": "Jul 2024 - Mei 2025",
     "project.3.title": "Mendorong okupansi hotel melalui visual storytelling",
     "project.3.tags": "Visual Storytelling,Pembuatan Konten,Kampanye Musiman",
+
+    "project.4.company": "PT Krisna Beach Hotel",
+    "project.4.date": "Mar 2024 - Jun 2024",
+    "project.4.title": "Operasi Front Office & Layanan Tamu",
+    "project.4.tags": "Layanan Pelanggan,Operasi,Hubungan Tamu",
+
+    "project.5.company": "PT Djasa Autosarana Transports",
+    "project.5.date": "Agu 2022 - Okt 2022",
+    "project.5.title": "Pembuatan Konten Visual & Branding",
+    "project.5.tags": "Graphic Design,Konten Visual,Fotografi",
 
     // Project Narratives (Work Page)
     "projects.ptdin.narrative": "PT DIN, sebuah perusahaan dinamis berbasis Jakarta, menghadapi tantangan kritis dalam strategi iklan digital mereka: Cost Per Click (CPC) mereka berada di $3, membuat kampanye lead generation mereka tidak berkelanjutan dan tidak efisien. Tujuannya jelas—optimalkan kampanye untuk mengurangi CPC di bawah $1 sambil mempertahankan kualitas lead.\n\nSaya mengambil alih strategi Meta Ads mereka sejak hari pertama. Bekerja dengan akun Facebook dan Instagram mereka, saya melakukan analisis komprehensif terhadap semua kampanye aktif menggunakan Meta Ads Manager. Saya mengidentifikasi ad set yang underperform, segmen audiens dengan biaya tinggi, dan variasi kreatif yang tidak resonan.\n\nProses optimasi melibatkan multiple layer strategi: A/B testing pada targeting audiens untuk menemukan prospek high-intent, testing kreatif untuk meningkatkan engagement rate, dan penyesuaian bidding strategis. Saya menyempurnakan pengalaman landing page untuk meningkatkan conversion rate, yang secara langsung meningkatkan Quality Score di algoritma Meta. Alokasi budget disesuaikan dengan hati-hati untuk memprioritaskan ad set berkinerja terbaik sambil menghentikan atau merestruktur yang underperform.\n\nDalam empat minggu, hasilnya terukur dan signifikan. CPC turun dari $3.00 menjadi $0.89—pengurangan 67%. Namun dampaknya melampaui metrik itu sendiri: volume lead meningkat 3.5x, berarti perusahaan dapat menghasilkan jauh lebih banyak lead berkualitas dengan biaya sebelumnya. Transformasi ini membuat budget digital marketing mereka bekerja lebih keras dan lebih cerdas.",
